@@ -1,0 +1,22 @@
+<view class="home-shell">
+  <image class="home-bg" src="/assets/study-room.jpg" mode="aspectFill" />
+  <view class="home-shade"></view>
+  <view class="map-mark paper"><text class="eyebrow">SCIENCE RIVER · 01</text><text class="map-caption">沿着问题，走进发现</text></view>
+  <view class="home-copy">
+    <text class="eyebrow">科学长河 · 发现之旅</text>
+    <text class="hero-title">白光里的
+      <text class="hero-title-accent">秘密</text>
+    </text>
+    <text class="hero-subtitle">一束光，两种解释。哪条证据会改变你的想法？</text>
+    <view class="chapter-chip"><text class="chip-dot"></text><text>牛顿光学篇 · 约 10—15 分钟</text></view>
+  </view>
+  <mascot class="home-mascot" />
+  <view class="home-footer">
+    <view class="footer-top-row">
+      <view class="locked-node"><text class="node-ring">Ⅱ</text><view><text class="node-title">望远镜边缘的彩色谜题</text><text class="node-caption">后续章节 · 尚未开放</text></view></view>
+      <button class="sound-toggle" bindtap="toggleSound" aria-label="切换声音">{{muted ? '🔇' : '🔈'}}</button>
+    </view>
+    <button class="primary start-button" bindtap="startChapter">{{continueLabel}}</button>
+    <text class="footer-note">进度保存在这台设备上</text>
+  </view>
+</view>

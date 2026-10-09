@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "targetName": "Xiaomotuan IP",
+    "suitability": "conditional",
+    "components": 24,
+    "materials": 9
+  }
+}

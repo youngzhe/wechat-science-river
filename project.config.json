@@ -1,0 +1,9 @@
+{
+  "description": "科学长河：发现之旅 - 第一章可玩原型",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "appid": "wx9faec5601509a5c2",
+  "projectname": "wechat-science-river",
+  "setting": { "es6": true, "enhance": true, "postcss": true, "minified": true, "urlCheck": false },
+  "condition": {}
+}

@@ -1,0 +1,28 @@
+<view class="notebook-shell">
+  <view class="notebook-top"><view><text class="eyebrow">探索笔记 · {{observations.length}} 次尝试</text><text class="notebook-title">证据比猜想更重要</text></view><button class="back-lab secondary" bindtap="backToLab">回到实验</button></view>
+  <view class="hypotheses paper">
+    <view class="hypothesis-state"><text class="state-label">最初想法</text><text class="state-copy">{{initialText}}</text><text class="state-lock">已保留</text></view>
+    <view class="state-divider"></view>
+    <view class="hypothesis-state"><text class="state-label">现在的想法</text><text class="state-copy current">{{currentText}}</text></view>
+    <view class="revise-row"><text class="state-label">修改当前想法</text><view class="revise-options"><button wx:for="{{hypotheses}}" wx:key="id" data-id="{{item.id}}" bindtap="reviseHypothesis" class="revise-chip {{currentHypothesis === item.id ? 'selected' : ''}}">{{item.short}}</button></view></view>
+  </view>
+  <view class="section-heading"><text>实验快照</text><text class="section-note">选一张，再连接解释</text></view>
+  <scroll-view class="snapshot-list" scroll-y="true">
+    <view wx:if="{{!observations.length}}" class="empty-paper paper"><text class="empty-symbol">✧</text><text>记下实验后，观察会留在这里。</text></view>
+      <view wx:for="{{observations}}" wx:key="id" class="snapshot paper {{selectedId === item.id ? 'selected-snapshot' : ''}}" data-id="{{item.id}}" bindtap="selectObservation">
+      <view class="snapshot-mark">{{item.evidenceKind || '·'}}</view><view class="snapshot-text"><view class="snapshot-title-row"><text class="snapshot-title">第 {{item.order}} 次观察</text><text class="snapshot-kind">{{item.evidenceKind ? ('关键证据 ' + item.evidenceKind) : '尝试记录'}}</text></view><text class="snapshot-copy">{{item.caption}}</text><text class="snapshot-detail">{{item.modeLabel}} · {{item.selectedBandName}}</text></view>
+    </view>
+  </scroll-view>
+  <view class="link-card paper" wx:if="{{selectedObservation}}">
+    <text class="link-title">这条观察和哪种想法有关？</text>
+    <text class="link-caption">{{selectedObservation.evidenceKind === 'E1' ? 'E1 两边都能解释，暂时不能区分它们。' : '把观察和你的当前解释连起来。'}}</text>
+    <view class="link-actions"><button class="secondary" data-id="prism_creates_colors" bindtap="linkHypothesis">棱镜添上颜色</button><button class="secondary" data-id="white_contains_colors" bindtap="linkHypothesis">白光含有颜色</button></view>
+  </view>
+  <view class="transfer-card paper" wx:if="{{hasE4}}">
+    <text class="eyebrow">新情境挑战 · 先预测</text><text class="transfer-title">换一种窄色带，会发生什么？</text>
+    <view class="prediction-row"><button class="prediction {{transferPrediction === 'same_color' ? 'chosen' : ''}}" data-value="same_color" bindtap="setPrediction">方向会变，颜色近似不变</button><button class="prediction {{transferPrediction === 'new_color' ? 'chosen' : ''}}" data-value="new_color" bindtap="setPrediction">棱镜会给它新颜色</button></view>
+    <button class="primary verify-button" bindtap="startTransfer">{{hasTransferObservation ? '再试另一种颜色' : '带着预测去验证'}} →</button>
+    <text class="transfer-note">预测错了也可以改，实验会留下真实结果。</text>
+  </view>
+  <button class="primary conclusion-button" wx:if="{{canConclude}}" bindtap="conclude">整理发现 · 完成本章</button>
+</view>

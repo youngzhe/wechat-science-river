@@ -1,0 +1,50 @@
+<view class="lab-shell">
+  <view class="lab-header"><view><text class="eyebrow">实验室 · 光学台</text><text class="lab-title">让光自己回答</text></view><view class="header-actions"><button class="notebook-link sound-btn" bindtap="toggleSound" aria-label="切换声音">{{muted ? '🔇' : '🔈'}}</button><button class="notebook-link" bindtap="openNotebook">笔记 {{observationCount}}</button></view></view>
+  <view class="mode-tabs"><button wx:for="{{modes}}" wx:key="id" class="mode-tab {{apparatus.mode === item.id ? 'active' : ''}}" data-mode="{{item.id}}" bindtap="chooseMode">{{item.label}}</button></view>
+  <view class="scene-frame">
+    <view class="scene-heading"><text class="scene-kicker">{{modeHint}}</text><text class="stage-chip">{{stageLabel}}</text></view>
+    <canvas id="optics" type="2d" class="optics-canvas" aria-label="棱镜实验的实时光路示意，可左右拖动调整白屏位置" bindtouchstart="screenTouchStart" catchtouchmove="screenTouchMove" bindtouchend="screenTouchEnd" bindtouchcancel="screenTouchEnd"></canvas>
+    <view class="result-card {{result.evidenceKind ? 'has-evidence' : ''}}">
+      <view class="result-icon">{{result.evidenceKind ? '✦' : '◌'}}</view>
+      <view class="result-copy"><text class="result-title">{{result.evidenceKind ? ('证据 ' + result.evidenceKind) : '当前观察'}}</text><text class="result-message">{{result.message}}</text></view>
+    </view>
+    <view class="light-caption"><text class="beam-dot"></text><text>白光</text><text class="caption-arrow">→</text><text>{{apparatus.prism1InPath ? '棱镜' : '光路'}}</text><text class="caption-arrow">→</text><text>{{apparatus.lensInPath ? '透镜' : '白屏'}}</text></view>
+  </view>
+  <view class="bench-panel paper">
+    <view class="panel-heading"><text class="panel-title">器材与光路</text><text class="panel-note">点按即可调整</text></view>
+    <view class="control-row">
+      <button class="device-button {{apparatus.prism1InPath ? 'on' : ''}}" bindtap="togglePrism1"><text class="device-glyph prism-glyph">△</text><text>第一棱镜</text></button>
+      <button class="device-button {{apparatus.prism2InPath ? 'on' : ''}}" bindtap="togglePrism2"><text class="device-glyph">◇</text><text>第二棱镜</text></button>
+      <button class="device-button {{apparatus.lensInPath ? 'on' : ''}}" bindtap="toggleLens"><text class="device-glyph lens-glyph">◖</text><text>透镜</text></button>
+    </view>
+    <view class="adjust-row" wx:if="{{apparatus.prism1InPath && apparatus.mode !== 'recombination'}}">
+      <text class="adjust-label">棱镜角度</text><button class="stepper" bindtap="angleDown">−</button><text class="value-pill">{{apparatus.prism1Angle}}°</text><button class="stepper" bindtap="angleUp">＋</button>
+      <button class="narrow-button {{slitNarrow ? 'on' : ''}}" bindtap="toggleSlit">{{slitNarrow ? '窄缝已选色' : '选一段颜色'}}</button>
+    </view>
+    <view class="band-row" wx:if="{{apparatus.mode === 'selective_refraction'}}">
+      <text class="adjust-label">选择色带</text>
+      <button wx:for="{{bandOptions}}" wx:key="id" class="band-button {{apparatus.selectedBand === item.id ? 'chosen' : ''}}" data-band="{{item.id}}" bindtap="selectBand"><text class="band-swatch" style="background-color:{{item.color}}"></text>{{item.label}}</button>
+    </view>
+    <view class="adjust-row screen-row">
+      <text class="adjust-label">白屏位置</text><slider min="0.1" max="0.95" step="0.05" value="{{apparatus.screenPosition}}" activeColor="#719e9b" backgroundColor="#dfd8c8" block-color="#31546a" block-size="22" bindchanging="previewScreen" bindchange="moveScreen" />
+      <text class="drag-hint">↔ 可在图上拖动</text>
+    </view>
+    <view class="adjust-row" wx:if="{{apparatus.mode === 'recombination'}}">
+      <button class="narrow-button {{blocked ? 'on' : ''}}" bindtap="toggleBlock">{{blocked ? '恢复被挡色带' : '挡住一段色带'}}</button>
+      <text class="panel-note">比较完整与部分光谱</text>
+    </view>
+  </view>
+  <view class="action-row">
+    <button class="secondary action-button" bindtap="requestHint">找小助手</button>
+    <button class="secondary action-button" bindtap="undo">撤回一步</button>
+    <button class="secondary action-button" bindtap="resetLab">重置器材</button>
+    <button class="primary capture-button" bindtap="capture">记下发现</button>
+  </view>
+  <view class="hint-backdrop" wx:if="{{showHint}}" bindtap="closeHint" catchtouchmove="stopTap">
+    <view class="hint-card paper" catchtap="stopTap">
+      <view class="hint-header"><text class="eyebrow">小墨团 · 第 {{hintLevel}} 层提示</text><button class="close-clue" bindtap="closeHint">×</button></view>
+      <text class="hint-text">{{hintText}}</text>
+      <view class="hint-actions"><button class="secondary" bindtap="closeHint">我再试试</button><button class="primary" bindtap="deeperHint">再具体一点</button></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+.notebook-shell { min-height: 100vh; box-sizing: border-box; padding: 27rpx 27rpx 42rpx; background: radial-gradient(ellipse at 90% 0%, #fff9ec, transparent 33%), #f1eadc; }
+.notebook-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.notebook-title { display: block; margin-top: 8rpx; font-size: 34rpx; font-weight: 800; color: #293b4a; }
+.back-lab { margin: 0; padding: 0 18rpx; height: 88rpx; line-height: 88rpx; font-size: 20rpx; }
+.hypotheses { padding: 20rpx 21rpx; margin-top: 24rpx; background: rgba(255,253,247,.94); }
+.hypothesis-state { position: relative; display: grid; grid-template-columns: 130rpx 1fr auto; align-items: center; gap: 8rpx; min-height: 47rpx; }
+.state-label { color: #85877f; font-size: 20rpx; }
+.state-copy { font-size: 22rpx; font-weight: 700; color: #6b6c68; }
+.state-copy.current { color: #315d69; }
+.state-lock { color: #a0a197; font-size: 18rpx; }
+.state-divider { height: 1rpx; margin: 13rpx 0; background: #e9e3d8; }
+.revise-row { margin-top: 14rpx; padding-top: 14rpx; border-top: 1rpx solid #eee8de; }
+.revise-options { display: flex; gap: 8rpx; margin-top: 9rpx; }
+.revise-chip { flex: 1; margin: 0; padding: 11rpx 5rpx; min-height: 88rpx; white-space: normal; line-height: 1.2; color: #60717b; font-size: 18rpx; background: #eee9df; border-radius: 999rpx; }
+.revise-chip.selected { background: #d8e8e3; color: #285b66; font-weight: 700; }
+.section-heading { display: flex; justify-content: space-between; align-items: baseline; margin: 24rpx 2rpx 10rpx; font-size: 24rpx; font-weight: 800; color: #344958; }
+.section-note { color: #91938d; font-size: 18rpx; font-weight: 400; }
+.snapshot-list { max-height: 31vh; min-height: 180rpx; }
+.empty-paper { display: flex; align-items: center; gap: 15rpx; padding: 24rpx; color: #78817f; font-size: 21rpx; }
+.empty-symbol { color: #c6965a; font-size: 35rpx; }
+.snapshot { display: flex; align-items: flex-start; gap: 13rpx; margin-bottom: 10rpx; padding: 14rpx 14rpx; background: rgba(255,253,247,.95); }
+.snapshot.selected-snapshot { box-shadow: inset 0 0 0 2rpx #79a5a1, 0 8rpx 20rpx rgba(54,103,103,.09); }
+.snapshot-mark { display: flex; align-items: center; justify-content: center; width: 50rpx; height: 50rpx; flex-shrink: 0; border-radius: 15rpx; color: #a46636; background: #f2e3ca; font-weight: 800; font-size: 19rpx; }
+.snapshot-text { flex: 1; min-width: 0; }
+.snapshot-title-row { display: flex; justify-content: space-between; gap: 5rpx; }
+.snapshot-title { color: #364c5b; font-size: 20rpx; font-weight: 800; }
+.snapshot-kind { color: #6c9187; font-size: 17rpx; }
+.snapshot-copy { display: block; margin-top: 4rpx; color: #57666c; font-size: 19rpx; line-height: 1.35; }
+.snapshot-detail { display: block; margin-top: 5rpx; color: #9a958a; font-size: 16rpx; }
+.link-card { margin-top: 12rpx; padding: 16rpx 18rpx; background: #e4eee8; }
+.link-title { display: block; font-size: 21rpx; font-weight: 800; color: #315868; }
+.link-caption { display: block; margin-top: 5rpx; color: #688079; font-size: 18rpx; }
+.link-actions { display: flex; gap: 9rpx; margin-top: 12rpx; }
+.link-actions button { flex: 1; margin: 0; min-height: 88rpx; line-height: 1.25; padding: 9rpx 7rpx; white-space: normal; font-size: 18rpx; }
+.transfer-card { margin-top: 15rpx; padding: 18rpx; background: #fffaf0; }
+.transfer-title { display: block; margin-top: 6rpx; color: #304857; font-size: 22rpx; font-weight: 750; }
+.prediction-row { display: flex; gap: 9rpx; margin-top: 13rpx; }
+.prediction { flex: 1; margin: 0; min-height: 88rpx; padding: 10rpx; line-height: 1.35; white-space: normal; color: #606d71; font-size: 18rpx; background: #f0ece4; border-radius: 14rpx; }
+.prediction.chosen { color: #2e6268; background: #dfede8; box-shadow: inset 0 0 0 2rpx #76a6a0; }
+.verify-button { width: 100%; margin-top: 11rpx; height: 88rpx; line-height: 88rpx; font-size: 21rpx; }
+.transfer-note { display: block; margin-top: 9rpx; text-align: center; color: #99958c; font-size: 17rpx; }
+.conclusion-button { margin-top: 18rpx; width: 100%; height: 92rpx; line-height: 92rpx; font-size: 25rpx; box-shadow: 0 10rpx 20rpx rgba(45,84,97,.15); }

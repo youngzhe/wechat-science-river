@@ -1,0 +1,66 @@
+.study-shell { display: flex; flex-direction: column; height: calc(100vh - 88rpx); overflow: hidden; background: #9a8366; }
+/* ---- 上半：场景区（只放底图 + 热点 + 顶栏）---- */
+.scene-stage { position: relative; flex: 1 1 0; min-height: 400rpx; overflow: hidden; }
+.room-art { position: absolute; inset: 0; width: 100%; height: 100%; animation: room-float 22s ease-in-out infinite alternate; transform: scale(1.03); }
+.room-wash { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(36,39,39,.18), rgba(38,39,37,.05) 45%, rgba(28,34,36,.55)); }
+.room-wash::after { content: ''; position: absolute; inset: 12% 0 20%; pointer-events: none; opacity: .2; background-image: radial-gradient(circle, rgba(255,247,221,.9) 0 1.5rpx, transparent 2.5rpx), radial-gradient(circle, rgba(251,230,185,.8) 0 1rpx, transparent 2.2rpx); background-size: 153rpx 177rpx, 211rpx 239rpx; animation: dust-drift 16s linear infinite; }
+.top-tools { position: absolute; top: 20rpx; left: 24rpx; right: 24rpx; z-index: 4; display: flex; justify-content: space-between; align-items: center; gap: 10rpx; }
+.top-left { display: flex; align-items: center; gap: 12rpx; min-width: 0; }
+.top-actions { display: flex; gap: 8rpx; flex-shrink: 0; }
+.chapter-pill, .tool-button { padding: 0 18rpx; height: 72rpx; line-height: 72rpx; border-radius: 999rpx; font-size: 20rpx; color: #fff7e9; background: rgba(35,48,53,.72); backdrop-filter: blur(10rpx); white-space: nowrap; }
+.tool-button { margin: 0; }
+.progress-dots { display: flex; gap: 7rpx; padding: 0 14rpx; height: 72rpx; align-items: center; border-radius: 999rpx; background: rgba(35,48,53,.55); }
+.progress-dot { width: 12rpx; height: 12rpx; border-radius: 50%; background: rgba(255,255,255,.46); }
+.progress-dot.filled { background: #ffd47f; }
+/* 热点只属于场景区，永远不会压到面板 */
+.hotspot { position: absolute; z-index: 6; min-width: 96rpx; min-height: 96rpx; height: 96rpx; padding: 0 20rpx; line-height: 96rpx; border-radius: 50%; color: #284658; font-size: 27rpx; font-weight: 800; background: rgba(252,239,207,.92); border: 4rpx solid rgba(255,255,255,.82); box-shadow: 0 0 0 12rpx rgba(255,235,182,.2), 0 8rpx 22rpx rgba(30,31,25,.24); animation: pulse 2.2s ease-out infinite; }
+.hotspot.seen { background: #41736b; color: white; box-shadow: 0 0 0 8rpx rgba(169,226,192,.18); animation: none; }
+.hotspot.guided { outline: 6rpx solid #e8bc72; outline-offset: 6rpx; }
+.window-spot { top: 17%; left: 13%; }
+.prism-spot { top: 45%; left: 32%; }
+.screen-spot { top: 40%; right: 13%; }
+.paper-spot { top: 70%; left: 21%; border-radius: 30rpx; font-size: 20rpx; }
+/* ---- 下半：面板区（任务 + 对话 + 猜想 + 按钮，纵向排列）---- */
+.study-panel { flex-shrink: 0; display: flex; flex-direction: column; gap: 16rpx; padding: 20rpx 26rpx calc(20rpx + env(safe-area-inset-bottom)); border-radius: 32rpx 32rpx 0 0; background: rgba(250,247,239,.98); box-shadow: 0 -10rpx 30rpx rgba(30,31,25,.18); }
+.task-row { display: flex; align-items: baseline; gap: 14rpx; }
+.task-eyebrow { flex-shrink: 0; color: #ae6d42; font-size: 19rpx; font-weight: 800; }
+.task-text { font-size: 26rpx; font-weight: 700; color: #30414f; }
+.dialogue { position: relative; display: flex; align-items: center; padding: 14rpx 16rpx; border-radius: 20rpx; background: #f2ecdf; }
+.buddy { width: 96rpx; height: 96rpx; flex-shrink: 0; margin-right: 14rpx; }
+.dialogue-close { position: absolute; top: 6rpx; right: 6rpx; margin: 0; width: 52rpx; height: 52rpx; line-height: 48rpx; padding: 0; border-radius: 50%; background: transparent; color: #a89e8c; font-size: 34rpx; }
+.buddy-reopen { margin: 0; width: 88rpx; height: 88rpx; padding: 6rpx; border-radius: 50%; background: #f2ecdf; box-shadow: 0 4rpx 12rpx rgba(43,50,55,.14); align-self: flex-start; }
+.dialogue-copy { display: flex; flex-direction: column; min-width: 0; }
+.buddy-name { color: #ae6d42; font-size: 20rpx; font-weight: 800; }
+.buddy-line { margin-top: 5rpx; font-size: 23rpx; line-height: 1.45; color: #344554; }
+.hypothesis-box { padding: 14rpx 16rpx; border-radius: 20rpx; background: #ece6d9; }
+.hypothesis-eyebrow { color: #8a6f4e; font-size: 19rpx; font-weight: 800; }
+.hypothesis-list { display: flex; gap: 10rpx; margin-top: 12rpx; }
+.hypothesis { flex: 1; margin: 0; padding: 14rpx 8rpx; min-height: 88rpx; line-height: 1.3; white-space: normal; font-size: 20rpx; color: #425465; background: #fbf8f1; border-radius: 16rpx; }
+.hypothesis.selected { color: white; background: #376676; box-shadow: 0 7rpx 16rpx rgba(43,79,91,.19); }
+.continue-button { margin: 0; height: 92rpx; line-height: 92rpx; font-size: 27rpx; }
+.continue-button text { margin-left: 16rpx; font-size: 36rpx; }
+/* ---- 弹窗层 ---- */
+.clue-layer { position: fixed; z-index: 7; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40rpx; background: rgba(24, 33, 36, .42); }
+.clue-card { width: 100%; max-width: 620rpx; padding: 26rpx 30rpx; background: rgba(250, 247, 239, .98); }
+.clue-head { display: flex; justify-content: space-between; align-items: center; }
+.clue-title { font-size: 29rpx; font-weight: 800; }
+.close-clue { margin: 0; width: 88rpx; height: 88rpx; line-height: 84rpx; border-radius: 50%; background: #e7e0d2; color: #425465; font-size: 40rpx; }
+.clue-copy { display: block; margin-top: 14rpx; font-size: 26rpx; line-height: 1.7; color: #4c5862; }
+.clue-tap-hint { display: block; margin-top: 16rpx; text-align: center; color: #a49c8e; font-size: 19rpx; }
+.intro-backdrop { position: fixed; z-index: 30; inset: 0; display: flex; align-items: center; justify-content: center; padding: 35rpx; background: rgba(24,34,37,.58); }
+.intro-card { position: relative; width: 100%; padding: 45rpx 31rpx 29rpx; box-sizing: border-box; overflow: hidden; background: #fbf7ed; }
+.intro-buddy { position: absolute; top: 12rpx; right: 12rpx; width: 142rpx; height: 148rpx; transform: rotate(8deg); }
+.intro-title { display: block; margin-top: 12rpx; color: #304958; font-size: 37rpx; font-weight: 850; }
+.intro-copy { display: block; margin-top: 15rpx; padding-right: 20rpx; color: #54636a; font-size: 24rpx; line-height: 1.75; }
+.intro-button { width: 100%; height: 90rpx; margin-top: 23rpx; line-height: 90rpx; font-size: 24rpx; }
+.fiction-note { display: block; margin-top: 13rpx; color: #9b9589; text-align: center; font-size: 17rpx; }
+.hint-backdrop { position: fixed; z-index: 32; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40rpx; background: rgba(26,34,36,.45); }
+.hint-card { width: 100%; max-width: 540rpx; padding: 20rpx 22rpx; box-sizing: border-box; border-radius: 24rpx; background: #fbf7ed; }
+.hint-header { display: flex; align-items: center; justify-content: space-between; }
+.hint-header .close-clue { width: 56rpx; height: 56rpx; line-height: 52rpx; font-size: 30rpx; }
+.hint-text { display: block; margin-top: 12rpx; color: #344958; font-size: 24rpx; line-height: 1.6; }
+.hint-actions { display: flex; gap: 10rpx; margin-top: 16rpx; }
+.hint-actions button { flex: 1; margin: 0; height: 72rpx; line-height: 72rpx; font-size: 21rpx; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,235,182,.48), 0 8rpx 22rpx rgba(30,31,25,.24); } 80%,100% { box-shadow: 0 0 0 18rpx rgba(255,235,182,0), 0 8rpx 22rpx rgba(30,31,25,.24); } }
+@keyframes room-float { from { transform: scale(1.03) translate3d(0,0,0); } to { transform: scale(1.08) translate3d(-6rpx,-8rpx,0); } }
+@keyframes dust-drift { from { background-position: 0 0, 34rpx 60rpx; } to { background-position: 80rpx -90rpx, -35rpx -120rpx; } }

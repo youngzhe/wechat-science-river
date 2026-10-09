@@ -1,0 +1,134 @@
+{
+  "sourceImage": "/Users/yangzhe/work_station/aistudio/science_river/wechat-science-river/miniprogram/assets/xiaomotuan-small.png",
+  "overlayImage": "/Users/yangzhe/work_station/aistudio/science_river/wechat-science-river/assets-src/xiaomotuan-3d/evidence/landmarks.png",
+  "overlayLegend": {
+    "C": "center symmetry axis",
+    "1..N": "head-unit horizontal ticks (blue, dashed)",
+    "H": "hairline guide (default fraction of the first head-unit band)",
+    "E": "eye line guide",
+    "N": "nose base guide",
+    "M": "mouth line guide",
+    "S": "shoulder line guide (default fraction, adjust to observed pose)",
+    "P": "hip line guide (default fraction, adjust to observed pose)",
+    "grayDashed": "rule-of-thirds compositional grid"
+  },
+  "anatomy": {
+    "styleHeads": 2.0,
+    "proportions": {
+      "headUnit": 0.5,
+      "torso": 0.58,
+      "legs": 0.31,
+      "shoulderWidth": 0.92,
+      "hipWidth": 0.8,
+      "measurementNote": "Approximate chibi/creature proportions measured against crown-to-scarf head mass; not human anatomy."
+    },
+    "pose": {
+      "type": "front-facing grounded stance; character-right upper arm raised toward cheek; character-left arm relaxed by scarf",
+      "jointAngles": {
+        "neck": [
+          0,
+          0,
+          0
+        ],
+        "leftShoulder": [
+          0,
+          0,
+          0
+        ],
+        "rightShoulder": [
+          0,
+          0,
+          0
+        ],
+        "leftElbow": [
+          0,
+          0,
+          0
+        ],
+        "rightElbow": [
+          0,
+          0,
+          0
+        ],
+        "leftWrist": [
+          0,
+          0,
+          0
+        ],
+        "rightWrist": [
+          0,
+          0,
+          0
+        ],
+        "leftHip": [
+          0,
+          0,
+          0
+        ],
+        "rightHip": [
+          0,
+          0,
+          0
+        ],
+        "leftKnee": [
+          0,
+          0,
+          0
+        ],
+        "rightKnee": [
+          0,
+          0,
+          0
+        ],
+        "leftAnkle": [
+          0,
+          0,
+          0
+        ],
+        "rightAnkle": [
+          0,
+          0,
+          0
+        ]
+      },
+      "confidence": 0.62,
+      "evidenceRef": "evidence/landmarks.png"
+    },
+    "faceLandmarks": {
+      "hairline": 0.04,
+      "eyeLine": 0.62,
+      "eyeSpacing": 0.2,
+      "noseBase": 0.74,
+      "mouthLine": 0.81,
+      "earTop": null,
+      "earBottom": null,
+      "note": "No nose or ears are visible; noseBase is a lower-face plane guide only. Approximate normalized readings against the organic head bounding box.",
+      "evidenceRef": "evidence/landmarks.png"
+    },
+    "features": [
+      {
+        "name": "oversized amber eyes",
+        "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+        "confidence": 0.9
+      },
+      {
+        "name": "two uneven crown flame/leaf tufts",
+        "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+        "confidence": 0.9
+      },
+      {
+        "name": "wrapped teal scarf and two trailing cloth ends",
+        "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+        "confidence": 0.9
+      },
+      {
+        "name": "hidden rear scarf join and back silhouette",
+        "evidenceRef": "inferred stylized rear view",
+        "confidence": 0.35
+      }
+    ],
+    "confidence": 0.67,
+    "note": "Non-human chibi character. Approximate proportions; the overlay guides measurement but the face remains deliberately oversized and cute."
+  },
+  "authoringInstruction": "Open overlayImage and read the reference against its head-unit ticks, thirds grid, face-line guides, shoulder/hip lines, and center axis. Replace every null/placeholder value in anatomy with normalized coordinates or joint angles actually observed; the drawn guide lines are generic starting positions, not measurements."
+}

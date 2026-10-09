@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "reference",
+    "sourcePath": "/Users/yangzhe/work_station/aistudio/science_river/wechat-science-river/miniprogram/assets/xiaomotuan-small.png",
+    "width": 619,
+    "height": 640,
+    "foregroundCoverage": 0.3989,
+    "largestComponentFraction": 1.0,
+    "pHash": 17093116560486361153,
+    "duplicateOfHash": null
+  }
+}

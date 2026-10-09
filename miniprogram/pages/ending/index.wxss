@@ -1,0 +1,36 @@
+.ending-shell { min-height: 100vh; box-sizing: border-box; padding: 0 27rpx 42rpx; background: radial-gradient(ellipse at 50% -10%, #fff9e8, transparent 45%), #f0e8d9; }
+.ending-hero { position: relative; overflow: hidden; margin: 0 -27rpx; padding: 60rpx 38rpx 31rpx; color: #fff6e6; background: linear-gradient(145deg, #375563, #263e48 78%); }
+.ending-hero::before { content: ''; position: absolute; width: 460rpx; height: 460rpx; top: -210rpx; right: -130rpx; border-radius: 50%; background: radial-gradient(circle, rgba(255,210,133,.32), transparent 68%); }
+.seal { display: flex; align-items: center; justify-content: center; width: 76rpx; height: 76rpx; margin-bottom: 24rpx; border-radius: 50%; color: #eac782; border: 2rpx solid rgba(234,199,130,.55); font-size: 36rpx; }
+.ending-hero .eyebrow { color: #edc783; }
+.ending-title { display: block; margin-top: 12rpx; font-size: 56rpx; line-height: 1.15; font-weight: 850; letter-spacing: 3rpx; }
+.ending-subtitle { display: block; max-width: 500rpx; margin-top: 13rpx; color: rgba(255,246,230,.8); font-size: 23rpx; line-height: 1.6; }
+.ending-buddy { position: absolute; width: 175rpx; height: 181rpx; right: 21rpx; bottom: 6rpx; filter: drop-shadow(0 10rpx 16rpx rgba(0,0,0,.23)); }
+.journey-card { margin-top: 20rpx; padding: 21rpx 23rpx 18rpx; }
+.section-title { display: block; color: #304858; font-weight: 800; font-size: 25rpx; }
+.journey-line { position: relative; display: flex; gap: 15rpx; margin-top: 18rpx; }
+.journey-line:not(:last-of-type)::after { content: ''; position: absolute; top: 20rpx; bottom: -21rpx; left: 8rpx; width: 2rpx; background: #d9e4dc; }
+.journey-dot { position: relative; z-index: 1; width: 18rpx; height: 18rpx; flex-shrink: 0; margin-top: 4rpx; border-radius: 50%; background: #6c9c94; box-shadow: 0 0 0 5rpx #e3eee8; }
+.journey-dot.final { background: #c48b50; box-shadow: 0 0 0 5rpx #f4e8d5; }
+.journey-label, .journey-copy { display: block; }
+.journey-label { color: #8d8e86; font-size: 18rpx; }
+.journey-copy { margin-top: 5rpx; color: #3c505d; font-size: 22rpx; font-weight: 700; }
+.small-reflection { display: block; margin-top: 17rpx; padding-top: 14rpx; color: #83877f; border-top: 1rpx solid #ebe5d9; font-size: 18rpx; }
+.archive-card { margin-top: 15rpx; padding: 19rpx 21rpx; background: rgba(255,253,247,.96); }
+.archive-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10rpx; }
+.archive-head .section-title { margin-top: 5rpx; }
+.archive-open { padding: 8rpx 13rpx; color: #568179; background: #e6f0e8; border-radius: 999rpx; font-size: 17rpx; }
+.archive-row { display: flex; gap: 12rpx; padding: 11rpx 0; border-top: 1rpx solid #eee8dc; }
+.archive-tag { flex-shrink: 0; width: 88rpx; padding-top: 3rpx; color: #aa7041; font-size: 17rpx; font-weight: 750; }
+.archive-copy-wrap { flex: 1; }
+.archive-copy { display: block; color: #5a666a; font-size: 18rpx; line-height: 1.5; }
+.source-link { display: block; margin-top: 5rpx; color: #4b8183; font-size: 17rpx; text-decoration: underline; }
+.parent-question { display: flex; gap: 10rpx; margin-top: 13rpx; padding: 13rpx; color: #635c4c; border-radius: 14rpx; background: #f5efdf; font-size: 18rpx; line-height: 1.5; }
+.question-mark { display: flex; justify-content: center; align-items: center; width: 31rpx; height: 31rpx; flex-shrink: 0; color: white; background: #ba8951; border-radius: 50%; font-weight: 800; }
+.next-preview { margin-top: 18rpx; padding: 18rpx 22rpx; border-radius: 21rpx; color: #f3ead8; background: linear-gradient(120deg, #74847e, #586d70); }
+.next-kicker, .next-title, .next-status { display: block; }
+.next-kicker { color: #e9c990; font-size: 17rpx; }
+.next-title { margin-top: 6rpx; font-size: 24rpx; font-weight: 750; }
+.next-status { margin-top: 5rpx; color: rgba(243,234,216,.7); font-size: 17rpx; }
+.home-button { width: 100%; margin-top: 18rpx; height: 78rpx; line-height: 78rpx; font-size: 23rpx; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-10rpx) rotate(-1deg); } }

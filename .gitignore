@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# 微信开发者工具个人配置（含本机 IDE 状态，不入库）
+project.private.config.json
+
+# 运行产物
+node_modules/
+
+# 会话/工具目录
+.superpowers/

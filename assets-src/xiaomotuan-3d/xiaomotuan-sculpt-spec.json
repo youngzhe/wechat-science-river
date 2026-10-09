@@ -1,0 +1,6044 @@
+{
+  "targetName": "Xiaomotuan IP",
+  "targetId": "xiaomotuan-ip",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "miniprogram/assets/xiaomotuan-small.png",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 40.0,
+    "aspect": 1.0,
+    "orientation": {
+      "yaw": 0.0,
+      "pitch": 0.0,
+      "roll": 0.0
+    },
+    "positionHint": [
+      0.0,
+      0.0,
+      3.0
+    ],
+    "note": "For likeness work, solve the reference camera (forge/stage1_intake/solve_camera_pose.py) so the review render aligns with the photo and the reference can be projected. Confirm by overlay review."
+  },
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 0,
+    "silhouette_readability": 0,
+    "depth_inference": 0,
+    "primitive_decomposition": 0,
+    "material_procedurality": 0,
+    "occlusion_risk": 0,
+    "interaction_fit": 0
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "non-human chibi mascot character",
+      "primaryDomain": "character",
+      "formLanguage": [
+        "organic",
+        "character-like",
+        "amorphous",
+        "fabric-like"
+      ],
+      "structureKind": [
+        "compound object",
+        "layered parts",
+        "single organic body with accessories"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "discrete pre-rendered turn"
+      ],
+      "materialFamilies": [
+        "soot-like matte body",
+        "glossy eye surfaces",
+        "cloth scarf",
+        "warm cream tuft surfaces"
+      ],
+      "notes": "Preserve the cute chibi proportions and friendly expression. Use a brighter, more saturated teal scarf than the source image per user direction. Non-human creature; no human nose, ears, or fingers."
+    },
+    "complexity": {
+      "tier": "moderate",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 0,
+        "materialLayerCount": 2,
+        "localDetailDensity": 2,
+        "occlusionRisk": 3,
+        "actionReadinessNeed": 1
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 9,
+        "microFeatureGroups": 9,
+        "materialLayers": 8,
+        "repetitionSystems": 0
+      },
+      "reasoning": [
+        "One organic body with small limbs, two eyes, asymmetric crown tufts, and a wrapped scarf with two trailing ends.",
+        "Several visible material/color regions and small face details make moderate detail appropriate.",
+        "The source is front-only, so side and back inference raises view uncertainty."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "moderate",
+      "minimumComponentLevels": [
+        "macro",
+        "meso"
+      ],
+      "needsRepetitionSystems": false,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": false,
+      "rationale": "A layered character needs a readable parent-child hierarchy for body, limbs, tufts, eyes, and scarf; it does not need repeated systems or a production rig."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 9,
+      "details": [
+        {
+          "id": "zone-r0c0",
+          "kind": "contour",
+          "description": "Left cranial contour narrows toward the cheek; pale sclera and amber edge of the left eye enter the crop.",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "preserve round head contour and visible eye/sclera overlap",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "head-shell/head-contour"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r0c0.png",
+          "confidence": 0.82
+        },
+        {
+          "id": "zone-r0c1",
+          "kind": "contour",
+          "description": "Two warm charcoal tones meet at the sloping crown silhouette; a tuft socket overlaps the head mass with a soft warm rim.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "retain soft soot-like surface and visible crown attachment",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tuft-primary/primary-tuft-socket"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r0c1.png",
+          "confidence": 0.76
+        },
+        {
+          "id": "zone-r0c2",
+          "kind": "contour",
+          "description": "Smaller rear crown tuft ends in a curved leaf/flame tip with a warm cream fill and ochre outline.",
+          "region": {
+            "x": 0.6667,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "keep the secondary tuft tapered, smaller, and curved",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tuft-secondary/secondary-tip"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r0c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "zone-r1c0",
+          "kind": "contour",
+          "description": "Raised short arm bends toward the cheek and overlaps the side of the body; part of the opposite eye is visible.",
+          "region": {
+            "x": 0.0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "make the raised arm read as attached and keep a cute compact pose",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "arm-raised/cheek-touch-arm"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r1c0.png",
+          "confidence": 0.84
+        },
+        {
+          "id": "zone-r1c1",
+          "kind": "gloss",
+          "description": "Large amber iris has a dark pupil, orange radial variation, pale sclera, and a high-value catchlight; curved brow and small smile sit above a folded teal scarf band.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "preserve oversized eye scale and friendly face; boost scarf hue/value contrast against charcoal body",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "eye-iris-right/amber-iris-layer"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r1c1.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "zone-r1c2",
+          "kind": "seam",
+          "description": "Head outline remains organic at the lateral cheek; scarf tail emerges behind the torso with a frayed tapered silhouette.",
+          "region": {
+            "x": 0.6667,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "separate body contour from scarf tail; do not model edge fraying as holes",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "scarf-tail-long/trailing-scarf-edge"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r1c2.png",
+          "confidence": 0.8
+        },
+        {
+          "id": "zone-r2c0",
+          "kind": "contour",
+          "description": "Lower body tapers into a small rounded foot; the other foot is partially visible at the edge.",
+          "region": {
+            "x": 0.0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "keep feet small relative to the body and ground both feet",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "foot-left/rounded-foot"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r2c0.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "zone-r2c1",
+          "kind": "stain",
+          "description": "Round charcoal torso has warm mottled painterly patches; short opposite arm overlaps the torso near the scarf.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "use subtle broad albedo/roughness variation without noisy micro-texture",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "body-shell/warm-charcoal-mottle"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r2c1.png",
+          "confidence": 0.82
+        },
+        {
+          "id": "zone-r2c2",
+          "kind": "seam",
+          "description": "Two scarf tails overlap and curve downward; teal base is visibly lighter than the shadowed underside, with warm gold flecks and broad fold lines.",
+          "region": {
+            "x": 0.6667,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "make scarf brighter and more saturated teal than the body, with readable layered folds and two distinct ends",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "scarf-front/scarf-contrast-folds"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r2c2.png",
+          "confidence": 0.91
+        }
+      ]
+    },
+    "anatomy": {
+      "styleHeads": 2.0,
+      "proportions": {
+        "headUnit": 0.5,
+        "torso": 0.58,
+        "legs": 0.31,
+        "shoulderWidth": 0.92,
+        "hipWidth": 0.8,
+        "measurementNote": "Approximate chibi/creature proportions measured against crown-to-scarf head mass; not human anatomy."
+      },
+      "pose": {
+        "type": "front-facing grounded stance; character-right upper arm raised toward cheek; character-left arm relaxed by scarf",
+        "jointAngles": {
+          "neck": [
+            0,
+            0,
+            0
+          ],
+          "leftShoulder": [
+            0,
+            0,
+            0
+          ],
+          "rightShoulder": [
+            0,
+            0,
+            0
+          ],
+          "leftElbow": [
+            0,
+            0,
+            0
+          ],
+          "rightElbow": [
+            0,
+            0,
+            0
+          ],
+          "leftWrist": [
+            0,
+            0,
+            0
+          ],
+          "rightWrist": [
+            0,
+            0,
+            0
+          ],
+          "leftHip": [
+            0,
+            0,
+            0
+          ],
+          "rightHip": [
+            0,
+            0,
+            0
+          ],
+          "leftKnee": [
+            0,
+            0,
+            0
+          ],
+          "rightKnee": [
+            0,
+            0,
+            0
+          ],
+          "leftAnkle": [
+            0,
+            0,
+            0
+          ],
+          "rightAnkle": [
+            0,
+            0,
+            0
+          ]
+        },
+        "confidence": 0.62,
+        "evidenceRef": "evidence/landmarks.png"
+      },
+      "faceLandmarks": {
+        "hairline": 0.04,
+        "eyeLine": 0.62,
+        "eyeSpacing": 0.2,
+        "noseBase": 0.74,
+        "mouthLine": 0.81,
+        "earTop": null,
+        "earBottom": null,
+        "note": "No nose or ears are visible; noseBase is a lower-face plane guide only. Approximate normalized readings against the organic head bounding box.",
+        "evidenceRef": "evidence/landmarks.png"
+      },
+      "features": [
+        {
+          "name": "oversized amber eyes",
+          "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+          "confidence": 0.9
+        },
+        {
+          "name": "two uneven crown flame/leaf tufts",
+          "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+          "confidence": 0.9
+        },
+        {
+          "name": "wrapped teal scarf and two trailing cloth ends",
+          "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+          "confidence": 0.9
+        },
+        {
+          "name": "hidden rear scarf join and back silhouette",
+          "evidenceRef": "inferred stylized rear view",
+          "confidence": 0.35
+        }
+      ],
+      "confidence": 0.67,
+      "note": "Non-human chibi character. Approximate proportions; the overlay guides measurement but the face remains deliberately oversized and cute.",
+      "applies": true
+    },
+    "sourceImage": "miniprogram/assets/xiaomotuan-small.png",
+    "pipelineRouting": {
+      "version": 1,
+      "track": "character-v1.5",
+      "source": "explicit",
+      "status": "resolved",
+      "classification": {
+        "kind": "character",
+        "confidence": 1.0,
+        "evidenceRefs": [
+          "pipeline-routing:explicit:character-v1.5"
+        ],
+        "provider": "pipeline-routing-cli",
+        "version": "1"
+      },
+      "conflicts": []
+    }
+  },
+  "qualityContract": {
+    "qualityBar": "moderate",
+    "definitionOfDone": [
+      "Front silhouette preserves the cute rounded chibi body, oversized amber eyes, twin crown flames, and compact feet.",
+      "The scarf is clearly brighter and more saturated teal than the warm charcoal-brown body with a gentle brightness lift, with two distinct layered tails and soft readable folds.",
+      "Front, three-quarter, side, and rear views have coherent volumes and attachments; hidden rear surfaces are explicitly stylized inference.",
+      "Transparent front and turned renders remain legible at the mini-program size and keep the friendly expression."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 6,
+      "microFeatureGroups": 8,
+      "materialLayers": 4,
+      "repetitionSystems": 0,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.72,
+    "mustMatch": [
+      "cute chibi silhouette and face proportions",
+      "amber eye layering and catchlights",
+      "high-contrast vivid teal scarf against warm charcoal body",
+      "twin asymmetric cream crown tufts"
+    ],
+    "niceToHave": [
+      "subtle painterly surface variation",
+      "soft contact shadow"
+    ],
+    "fpsTarget": 30,
+    "reviewViewpoints": [
+      "front",
+      "three-quarter",
+      "side",
+      "rear"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "Check body/head proportions after blockout.",
+      "Check limb sockets, scarf wrap continuity, and head/body overlap after structural-pass."
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "proportion-lock",
+        "feature-placement",
+        "material-pass",
+        "lighting-pass",
+        "interaction-pass",
+        "optimization-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "For each visual model pass, capture a rendered screenshot, comparison sheet, AI vision score, layer scores, and critique before continuing.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "anatomy-proportion",
+      "name": "Cute chibi silhouette and body/head ratio",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "proportion-lock"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "head-shell",
+        "body-shell",
+        "foot-left"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "face-landmark-placement",
+      "name": "Oversized amber eyes and friendly face",
+      "tier": "critical",
+      "passIds": [
+        "feature-placement"
+      ],
+      "minimumScore": 0.76,
+      "mustPass": true,
+      "componentRefs": [
+        "eye-sclera-right",
+        "eye-iris-right",
+        "mouth-smile"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "pose-silhouette",
+      "name": "Raised cheek-touch arm and compact stance",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "proportion-lock"
+      ],
+      "minimumScore": 0.75,
+      "mustPass": true,
+      "componentRefs": [
+        "arm-raised",
+        "foot-left",
+        "foot-right"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "outfit-and-palette",
+      "name": "Higher-contrast teal scarf and cream tufts",
+      "tier": "important",
+      "passIds": [
+        "material-pass"
+      ],
+      "minimumScore": 0.72,
+      "mustPass": true,
+      "componentRefs": [
+        "scarf-wrap",
+        "scarf-front",
+        "scarf-tail-long",
+        "tuft-primary"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "proportion-lock",
+      "feature-placement",
+      "material-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "Each pass remains locked until its render, comparison, review, and gate evidence are recorded.",
+    "nextRequiredEvidence": [
+      "current pass screenshot",
+      "reference/render comparison sheet",
+      "AI vision score and layer scores",
+      "semantic feature scores for active pass",
+      "reviewHistory entry with action=continue"
+    ]
+  },
+  "lookDevTargets": {
+    "qualityPriority": "reference-fidelity",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": false,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 256,
+      "preferredTextureResolution": 512,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": false,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": false,
+        "script": "skipped",
+        "acceptedLimitation": "Painterly generated illustration bakes highlights/shadows and is not a reliable PBR sample. Authored stylized materials with brighter scarf albedo are intentional."
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold",
+        "photoreal pores or dirty/noisy charcoal surface",
+        "muted scarf that blends into the body"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Stable named component groups are retained for future IP iteration. This render-only model does not ship a runtime rig or physics colliders.",
+    "defaultRigType": "static-character-source",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [
+    {
+      "id": "rear-body-inference",
+      "statement": "Hidden rear head/body use a low-asymmetry continuation of the charcoal volume; this is a stylized inference, not observed reference detail.",
+      "confidence": 0.35
+    },
+    {
+      "id": "scarf-back-inference",
+      "statement": "The scarf uses a low-profile rear crossover inferred from the visible neck band and tails.",
+      "confidence": 0.35
+    },
+    {
+      "id": "eye-depth-inference",
+      "statement": "Eye sockets use shallow inset layers because depth is uncertain in the front illustration.",
+      "confidence": 0.55
+    }
+  ],
+  "coordinateFrame": {
+    "front": "camera-facing side in the reference image",
+    "up": "image up direction",
+    "scaleReference": "unit scale; adjust after first browser render"
+  },
+  "silhouette": {
+    "boundingShape": "",
+    "aspectRatios": [],
+    "symmetry": "",
+    "dominantCurves": [],
+    "negativeSpaces": [],
+    "landmarks": []
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "front",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "rounded chibi silhouette",
+        "oversized amber eyes",
+        "two uneven crown tufts",
+        "wrapped scarf with trailing ends"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "rear-inferred",
+      "view": "rear",
+      "imageRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1,
+        "units": "normalized"
+      },
+      "observations": [
+        "rear geometry is stylized continuation; no reference pixels available"
+      ],
+      "confidence": 0.35
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Xiaomotuan Static Root",
+      "level": "macro",
+      "role": "root",
+      "importance": 1.0,
+      "confidence": 0.8,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Character (root) is a discrete primitive body part assembled onto the humanoid rig, not a continuous sculpt or shell.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized character part",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "units": "relative",
+        "confidence": 1.0
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "hidden"
+        }
+      },
+      "material": "hidden",
+      "materialLayers": [
+        "hidden"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(73, 59, 51, 1.0)",
+        "secondaryAlbedo": "rgba(116, 90, 71, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.5,
+        "notes": "Grouping node uses the original dark body silhouette with a gentle warm lift plus teal scarf."
+      }
+    },
+    {
+      "id": "head-shell",
+      "name": "Head Shell",
+      "level": "macro",
+      "role": "body",
+      "importance": 1.0,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "continuous-sculpt",
+      "topologyRationale": "Head Shell uses continuous-sculpt topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "organic deformed mesh",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.74,
+        "height": 0.78,
+        "depth": 0.56,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.15,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.74,
+          0.78,
+          0.56
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "head",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "skin"
+        }
+      },
+      "material": "body-charcoal",
+      "materialLayers": [
+        "body-charcoal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "head-contour",
+        "chibi-face-proportion"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(73, 59, 51, 1.0)",
+        "secondaryAlbedo": "rgba(116, 90, 71, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Original warm charcoal-brown palette with a modest brightness lift; exact values are in the linked material."
+      }
+    },
+    {
+      "id": "body-shell",
+      "name": "Body Shell",
+      "level": "macro",
+      "role": "body",
+      "importance": 1.0,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "continuous-sculpt",
+      "topologyRationale": "Body Shell uses continuous-sculpt topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "organic deformed mesh",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.64,
+        "height": 0.66,
+        "depth": 0.51,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          -0.26,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.64,
+          0.66,
+          0.51
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "head",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "skin"
+        }
+      },
+      "material": "body-charcoal",
+      "materialLayers": [
+        "body-charcoal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "warm-charcoal-mottle",
+        "round-body-contour"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(73, 59, 51, 1.0)",
+        "secondaryAlbedo": "rgba(116, 90, 71, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Original warm charcoal-brown palette with a modest brightness lift; exact values are in the linked material."
+      }
+    },
+    {
+      "id": "arm-raised",
+      "name": "Cheek-touch Arm",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Cheek-touch Arm uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.22,
+        "height": 0.32,
+        "depth": 0.19,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.3,
+          -0.03,
+          0.2
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.45
+        ],
+        "scale": [
+          0.22,
+          0.32,
+          0.19
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "upper-arm-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shirt"
+        }
+      },
+      "material": "body-charcoal",
+      "materialLayers": [
+        "body-charcoal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "cheek-touch-arm",
+        "soft-rounded-limb"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(73, 59, 51, 1.0)",
+        "secondaryAlbedo": "rgba(116, 90, 71, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Original warm charcoal-brown palette with a modest brightness lift; exact values are in the linked material."
+      }
+    },
+    {
+      "id": "arm-relaxed",
+      "name": "Relaxed Arm",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Relaxed Arm uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.19,
+        "height": 0.28,
+        "depth": 0.17,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.29,
+          -0.2,
+          0.18
+        ],
+        "rotation": [
+          0,
+          0,
+          0.28
+        ],
+        "scale": [
+          0.19,
+          0.28,
+          0.17
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "upper-arm-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shirt"
+        }
+      },
+      "material": "body-charcoal",
+      "materialLayers": [
+        "body-charcoal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "relaxed-rounded-limb"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(73, 59, 51, 1.0)",
+        "secondaryAlbedo": "rgba(116, 90, 71, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Original warm charcoal-brown palette with a modest brightness lift; exact values are in the linked material."
+      }
+    },
+    {
+      "id": "foot-left",
+      "name": "Left Rounded Foot",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Left Rounded Foot uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.25,
+        "height": 0.14,
+        "depth": 0.27,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.16,
+          -0.53,
+          0.06
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.08
+        ],
+        "scale": [
+          0.25,
+          0.14,
+          0.27
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "foot-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shoes"
+        }
+      },
+      "material": "body-charcoal",
+      "materialLayers": [
+        "body-charcoal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "rounded-foot"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(73, 59, 51, 1.0)",
+        "secondaryAlbedo": "rgba(116, 90, 71, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Original warm charcoal-brown palette with a modest brightness lift; exact values are in the linked material."
+      }
+    },
+    {
+      "id": "foot-right",
+      "name": "Right Rounded Foot",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Right Rounded Foot uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.25,
+        "height": 0.14,
+        "depth": 0.27,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.16,
+          -0.53,
+          0.06
+        ],
+        "rotation": [
+          0,
+          0,
+          0.08
+        ],
+        "scale": [
+          0.25,
+          0.14,
+          0.27
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "foot-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shoes"
+        }
+      },
+      "material": "body-charcoal",
+      "materialLayers": [
+        "body-charcoal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "rounded-foot"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(73, 59, 51, 1.0)",
+        "secondaryAlbedo": "rgba(116, 90, 71, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Original warm charcoal-brown palette with a modest brightness lift; exact values are in the linked material."
+      }
+    },
+    {
+      "id": "tuft-primary",
+      "name": "Primary Crown Flame",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "tapered-sweep",
+      "topologyClass": "continuous-sculpt",
+      "topologyRationale": "Primary Crown Flame uses continuous-sculpt topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "organic deformed mesh",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals",
+        "taperedSweep": {
+          "stations": [
+            [
+              0,
+              -0.38,
+              0,
+              0.42,
+              0.34
+            ],
+            [
+              0.02,
+              -0.08,
+              0,
+              0.46,
+              0.3
+            ],
+            [
+              0.08,
+              0.2,
+              0,
+              0.25,
+              0.18
+            ],
+            [
+              0.02,
+              0.46,
+              0,
+              0,
+              0
+            ]
+          ],
+          "radialSegments": 10,
+          "capEnds": true
+        }
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.3,
+        "height": 0.48,
+        "depth": 0.2,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.02,
+          0.57,
+          -0.01
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.08
+        ],
+        "scale": [
+          0.3,
+          0.48,
+          0.2
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hair",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "hair"
+        }
+      },
+      "material": "tuft-cream",
+      "materialLayers": [
+        "tuft-cream"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "primary-tuft-socket",
+        "primary-flame-silhouette"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(242, 210, 142, 1.0)",
+        "secondaryAlbedo": "rgba(255, 232, 179, 1.0)",
+        "materialClass": "fabric",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "tuft-secondary",
+      "name": "Secondary Crown Flame",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "tapered-sweep",
+      "topologyClass": "continuous-sculpt",
+      "topologyRationale": "Secondary Crown Flame uses continuous-sculpt topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "organic deformed mesh",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals",
+        "taperedSweep": {
+          "stations": [
+            [
+              0,
+              -0.34,
+              0,
+              0.48,
+              0.32
+            ],
+            [
+              0.25,
+              -0.08,
+              0,
+              0.4,
+              0.25
+            ],
+            [
+              0.48,
+              0.14,
+              0,
+              0.2,
+              0.14
+            ],
+            [
+              0.52,
+              0.28,
+              0,
+              0,
+              0
+            ]
+          ],
+          "radialSegments": 10,
+          "capEnds": true
+        }
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.27,
+        "height": 0.4,
+        "depth": 0.18,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.12,
+          0.54,
+          -0.05
+        ],
+        "rotation": [
+          0,
+          0,
+          0.4
+        ],
+        "scale": [
+          0.27,
+          0.4,
+          0.18
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hair",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "hair"
+        }
+      },
+      "material": "tuft-cream",
+      "materialLayers": [
+        "tuft-cream"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "secondary-tip",
+        "uneven-tuft-pair"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(242, 210, 142, 1.0)",
+        "secondaryAlbedo": "rgba(255, 232, 179, 1.0)",
+        "materialClass": "fabric",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-sclera-left",
+      "name": "Left Cream Eye",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Left Cream Eye uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.23,
+        "height": 0.26,
+        "depth": 0.085,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.16,
+          0.15,
+          0.48
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.04
+        ],
+        "scale": [
+          0.23,
+          0.26,
+          0.085
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-sclera",
+      "materialLayers": [
+        "eye-sclera"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "oversized-eye-sclera"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(255, 240, 215, 1.0)",
+        "secondaryAlbedo": "rgba(245, 221, 182, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-sclera-right",
+      "name": "Right Cream Eye",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Right Cream Eye uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.25,
+        "height": 0.28,
+        "depth": 0.09,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.15,
+          0.12,
+          0.49
+        ],
+        "rotation": [
+          0,
+          0,
+          0.06
+        ],
+        "scale": [
+          0.25,
+          0.28,
+          0.09
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-sclera",
+      "materialLayers": [
+        "eye-sclera"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "oversized-amber-eye"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(255, 240, 215, 1.0)",
+        "secondaryAlbedo": "rgba(245, 221, 182, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-iris-left",
+      "name": "Left Amber Iris",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Left Amber Iris uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.13,
+        "height": 0.16,
+        "depth": 0.045,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.15,
+          0.13,
+          0.545
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.04
+        ],
+        "scale": [
+          0.13,
+          0.16,
+          0.045
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-amber",
+      "materialLayers": [
+        "eye-amber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "amber-iris-layer"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(233, 135, 35, 1.0)",
+        "secondaryAlbedo": "rgba(255, 194, 78, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-iris-right",
+      "name": "Right Amber Iris",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Right Amber Iris uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.14,
+        "height": 0.17,
+        "depth": 0.05,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.16,
+          0.1,
+          0.56
+        ],
+        "rotation": [
+          0,
+          0,
+          0.05
+        ],
+        "scale": [
+          0.14,
+          0.17,
+          0.05
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-amber",
+      "materialLayers": [
+        "eye-amber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "amber-iris-layer"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(233, 135, 35, 1.0)",
+        "secondaryAlbedo": "rgba(255, 194, 78, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-pupil-left",
+      "name": "Left Pupil",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Left Pupil uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.072,
+        "height": 0.105,
+        "depth": 0.03,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.14,
+          0.12,
+          0.58
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.03
+        ],
+        "scale": [
+          0.072,
+          0.105,
+          0.03
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-pupil",
+      "materialLayers": [
+        "eye-pupil"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "dark-pupil"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(40, 21, 15, 1.0)",
+        "secondaryAlbedo": "rgba(74, 42, 28, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-pupil-right",
+      "name": "Right Pupil",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Right Pupil uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.078,
+        "height": 0.115,
+        "depth": 0.032,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.17,
+          0.09,
+          0.6
+        ],
+        "rotation": [
+          0,
+          0,
+          0.05
+        ],
+        "scale": [
+          0.078,
+          0.115,
+          0.032
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-pupil",
+      "materialLayers": [
+        "eye-pupil"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "dark-pupil"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(40, 21, 15, 1.0)",
+        "secondaryAlbedo": "rgba(74, 42, 28, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-highlight-left",
+      "name": "Left Eye Catchlight",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "sphere",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Left Eye Catchlight uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.035,
+        "height": 0.045,
+        "depth": 0.025,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.18,
+          0.18,
+          0.606
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.035,
+          0.045,
+          0.025
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-sclera",
+      "materialLayers": [
+        "eye-sclera"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "bright-catchlight"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(255, 240, 215, 1.0)",
+        "secondaryAlbedo": "rgba(245, 221, 182, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "eye-highlight-right",
+      "name": "Right Eye Catchlight",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "sphere",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Right Eye Catchlight uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.038,
+        "height": 0.048,
+        "depth": 0.026,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.14,
+          0.15,
+          0.63
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.038,
+          0.048,
+          0.026
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "eye-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "eye"
+        }
+      },
+      "material": "eye-sclera",
+      "materialLayers": [
+        "eye-sclera"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "bright-catchlight"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(255, 240, 215, 1.0)",
+        "secondaryAlbedo": "rgba(245, 221, 182, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "brow-left",
+      "name": "Left Soft Brow",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Left Soft Brow uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.13,
+        "height": 0.025,
+        "depth": 0.025,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.16,
+          0.34,
+          0.47
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.22
+        ],
+        "scale": [
+          0.13,
+          0.025,
+          0.025
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "brow-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "hair"
+        }
+      },
+      "material": "face-line",
+      "materialLayers": [
+        "face-line"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "soft-curved-brow"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(44, 27, 21, 1.0)",
+        "secondaryAlbedo": "rgba(75, 48, 37, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "brow-right",
+      "name": "Right Soft Brow",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Right Soft Brow uses assembled-solid topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.13,
+        "height": 0.025,
+        "depth": 0.025,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.15,
+          0.32,
+          0.48
+        ],
+        "rotation": [
+          0,
+          0,
+          0.15
+        ],
+        "scale": [
+          0.13,
+          0.025,
+          0.025
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "brow-l",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "hair"
+        }
+      },
+      "material": "face-line",
+      "materialLayers": [
+        "face-line"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "soft-curved-brow"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(44, 27, 21, 1.0)",
+        "secondaryAlbedo": "rgba(75, 48, 37, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "mouth-smile",
+      "name": "Small Smile",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.7,
+      "confidence": 0.8,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Extruded curved profile with nonzero depth; not a zero-thickness membrane.",
+      "geometryDescriptor": {
+        "topologyIntent": "cloth panel with shallow depth",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals",
+        "profile2D": {
+          "points": [
+            [
+              -0.5,
+              0.12
+            ],
+            [
+              -0.25,
+              -0.12
+            ],
+            [
+              0,
+              -0.22
+            ],
+            [
+              0.25,
+              -0.12
+            ],
+            [
+              0.5,
+              0.12
+            ],
+            [
+              0.28,
+              0.02
+            ],
+            [
+              0,
+              -0.04
+            ],
+            [
+              -0.28,
+              0.02
+            ]
+          ],
+          "depth": 0.05
+        }
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.12,
+        "height": 0.085,
+        "depth": 0.3,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          -0.06,
+          0.54
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.12,
+          0.085,
+          0.3
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "mouth",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "lips"
+        }
+      },
+      "material": "face-line",
+      "materialLayers": [
+        "face-line"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "small-friendly-smile"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(44, 27, 21, 1.0)",
+        "secondaryAlbedo": "rgba(75, 48, 37, 1.0)",
+        "materialClass": "unknown",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "scarf-wrap",
+      "name": "Scarf Wrap",
+      "level": "macro",
+      "role": "detail",
+      "importance": 1.0,
+      "confidence": 0.8,
+      "primitive": "torus",
+      "topologyClass": "conforming-shell",
+      "topologyRationale": "Scarf Wrap uses conforming-shell topology based on its observed rounded or cloth silhouette.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized rounded part",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals",
+        "torusTubeRatio": 0.34
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.78,
+        "height": 0.3,
+        "depth": 0.59,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          -0.17,
+          0.02
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.78,
+          0.3,
+          0.59
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "chest",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shirt"
+        }
+      },
+      "material": "scarf-teal",
+      "materialLayers": [
+        "scarf-teal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "scarf-wrap-band",
+        "high-contrast-teal"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(37, 191, 167, 1.0)",
+        "secondaryAlbedo": "rgba(117, 225, 206, 1.0)",
+        "materialClass": "fabric",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "scarf-front",
+      "name": "Scarf Front Fold",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Extruded curved profile with nonzero depth; not a zero-thickness membrane.",
+      "geometryDescriptor": {
+        "topologyIntent": "cloth panel with shallow depth",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals",
+        "profile2D": {
+          "points": [
+            [
+              -0.48,
+              0.36
+            ],
+            [
+              -0.38,
+              -0.25
+            ],
+            [
+              0,
+              -0.5
+            ],
+            [
+              0.38,
+              -0.25
+            ],
+            [
+              0.48,
+              0.36
+            ],
+            [
+              0.08,
+              0.15
+            ],
+            [
+              -0.1,
+              0.15
+            ]
+          ],
+          "depth": 0.05
+        }
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.66,
+        "height": 0.29,
+        "depth": 0.18,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          -0.18,
+          0.48
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.66,
+          0.29,
+          0.18
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "chest",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shirt"
+        }
+      },
+      "material": "scarf-teal",
+      "materialLayers": [
+        "scarf-teal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "scarf-contrast-folds",
+        "front-wrap-overlap"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(37, 191, 167, 1.0)",
+        "secondaryAlbedo": "rgba(117, 225, 206, 1.0)",
+        "materialClass": "fabric",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "scarf-tail-long",
+      "name": "Long Scarf Tail",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Extruded curved profile with nonzero depth; not a zero-thickness membrane.",
+      "geometryDescriptor": {
+        "topologyIntent": "cloth panel with shallow depth",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals",
+        "profile2D": {
+          "points": [
+            [
+              -0.62,
+              0.25
+            ],
+            [
+              -0.1,
+              0.4
+            ],
+            [
+              0.58,
+              0.76
+            ],
+            [
+              0.94,
+              0.62
+            ],
+            [
+              0.78,
+              -0.42
+            ],
+            [
+              0.34,
+              -0.18
+            ],
+            [
+              -0.18,
+              -0.28
+            ]
+          ],
+          "depth": 0.08
+        }
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.52,
+        "height": 0.3,
+        "depth": 0.16,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.23,
+          -0.13,
+          -0.13
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.12
+        ],
+        "scale": [
+          0.52,
+          0.3,
+          0.16
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "chest",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shirt"
+        }
+      },
+      "material": "scarf-teal",
+      "materialLayers": [
+        "scarf-teal"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "trailing-scarf-edge",
+        "long-tapered-cloth-end"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(37, 191, 167, 1.0)",
+        "secondaryAlbedo": "rgba(117, 225, 206, 1.0)",
+        "materialClass": "fabric",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    },
+    {
+      "id": "scarf-tail-short",
+      "name": "Short Scarf Tail",
+      "level": "meso",
+      "role": "detail",
+      "importance": 0.85,
+      "confidence": 0.8,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Extruded curved profile with nonzero depth; not a zero-thickness membrane.",
+      "geometryDescriptor": {
+        "topologyIntent": "cloth panel with shallow depth",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.02,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals",
+        "profile2D": {
+          "points": [
+            [
+              -0.56,
+              0.24
+            ],
+            [
+              -0.02,
+              0.36
+            ],
+            [
+              0.56,
+              0.58
+            ],
+            [
+              0.72,
+              0.25
+            ],
+            [
+              0.5,
+              -0.4
+            ],
+            [
+              0.12,
+              -0.2
+            ],
+            [
+              -0.34,
+              -0.32
+            ]
+          ],
+          "depth": 0.07
+        }
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0.02
+        ],
+        "contactType": "overlap",
+        "overlap": 0.025,
+        "gapTolerance": 0.01,
+        "evidenceRefs": [
+          "full-object"
+        ]
+      },
+      "dimensions": {
+        "width": 0.4,
+        "height": 0.23,
+        "depth": 0.12,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.25,
+          -0.26,
+          -0.15
+        ],
+        "rotation": [
+          0,
+          0,
+          0.05
+        ],
+        "scale": [
+          0.4,
+          0.23,
+          0.12
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "chest",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "shirt"
+        }
+      },
+      "material": "scarf-shadow",
+      "materialLayers": [
+        "scarf-shadow"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "second-scarf-end",
+        "scarf-underfold"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.0,
+        "microRoughness": 0.0,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [],
+      "fidelityTier": "blockout",
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(17, 125, 112, 1.0)",
+        "secondaryAlbedo": "rgba(46, 169, 149, 1.0)",
+        "materialClass": "fabric",
+        "materialClassConfidence": 0.72,
+        "notes": "Exact albedo hex values live in the linked material; the RGBA placeholders are validator evidence only."
+      }
+    }
+  ],
+  "materials": [
+    {
+      "id": "body-charcoal",
+      "name": "Warm charcoal-brown plush body with gentle brightness lift",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#493B33",
+      "color": "#493B33",
+      "albedo": {
+        "dominant": "#493B33",
+        "secondary": [
+          "#745A47"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#493B33",
+          "#745A47"
+        ],
+        "pattern": "soft broad mottling",
+        "amplitude": 0.1,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.78,
+        "variation": 0.08,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "subtle broad painterly texture only",
+        "strength": 0.12,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle broad tactile variation",
+        "amplitude": 0.01,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [
+        {
+          "id": "warm-cheek-mottle",
+          "region": "broad cheek and torso patches",
+          "albedo": "rgba(116, 90, 71, 1.0)",
+          "roughness": 0.76,
+          "notes": "Low-amplitude warm mottling; avoid noisy pores."
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Preserve the original cute near-charcoal palette, lifted only slightly toward warm cocoa brown; keep teal scarf clearly distinct."
+    },
+    {
+      "id": "scarf-teal",
+      "name": "High-contrast vivid teal scarf",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#25BFA7",
+      "color": "#25BFA7",
+      "albedo": {
+        "dominant": "#25BFA7",
+        "secondary": [
+          "#75E1CE"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#25BFA7",
+          "#75E1CE"
+        ],
+        "pattern": "subtle fabric variation",
+        "amplitude": 0.06,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.6,
+        "variation": 0.08,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "subtle broad painterly texture only",
+        "strength": 0.12,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle broad tactile variation",
+        "amplitude": 0.01,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [
+        {
+          "id": "bright-scarf-folds",
+          "region": "raised scarf folds",
+          "albedo": "rgba(117, 225, 206, 1.0)",
+          "roughness": 0.67,
+          "notes": "Lighter fold crests preserve strong contrast with body."
+        }
+      ],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration."
+    },
+    {
+      "id": "scarf-shadow",
+      "name": "Deep teal scarf folds",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#117D70",
+      "color": "#117D70",
+      "albedo": {
+        "dominant": "#117D70",
+        "secondary": [
+          "#2EA995"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#117D70",
+          "#2EA995"
+        ],
+        "pattern": "subtle fabric variation",
+        "amplitude": 0.06,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.68,
+        "variation": 0.08,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "subtle broad painterly texture only",
+        "strength": 0.08,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle broad tactile variation",
+        "amplitude": 0.01,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration."
+    },
+    {
+      "id": "eye-sclera",
+      "name": "Cream sclera",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#FFF0D7",
+      "color": "#FFF0D7",
+      "albedo": {
+        "dominant": "#FFF0D7",
+        "secondary": [
+          "#F5DDB6"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#FFF0D7",
+          "#F5DDB6"
+        ],
+        "pattern": "flat",
+        "amplitude": 0.06,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.3,
+        "variation": 0.025,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "smooth",
+        "strength": 0.04,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration.",
+      "clearcoat": 0.32
+    },
+    {
+      "id": "eye-amber",
+      "name": "Amber iris",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#E98723",
+      "color": "#E98723",
+      "albedo": {
+        "dominant": "#E98723",
+        "secondary": [
+          "#FFC24E"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#E98723",
+          "#FFC24E"
+        ],
+        "pattern": "flat",
+        "amplitude": 0.06,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.18,
+        "variation": 0.025,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "smooth",
+        "strength": 0.02,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration.",
+      "clearcoat": 0.32
+    },
+    {
+      "id": "eye-pupil",
+      "name": "Deep warm pupil",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#28150F",
+      "color": "#28150F",
+      "albedo": {
+        "dominant": "#28150F",
+        "secondary": [
+          "#4A2A1C"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#28150F",
+          "#4A2A1C"
+        ],
+        "pattern": "flat",
+        "amplitude": 0.06,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.16,
+        "variation": 0.025,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "smooth",
+        "strength": 0.0,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration.",
+      "clearcoat": 0.32
+    },
+    {
+      "id": "tuft-cream",
+      "name": "Warm cream crown tufts",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#F2D28E",
+      "color": "#F2D28E",
+      "albedo": {
+        "dominant": "#F2D28E",
+        "secondary": [
+          "#FFE8B3"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#F2D28E",
+          "#FFE8B3"
+        ],
+        "pattern": "subtle fabric variation",
+        "amplitude": 0.06,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.42,
+        "variation": 0.08,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "subtle broad painterly texture only",
+        "strength": 0.04,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle broad tactile variation",
+        "amplitude": 0.01,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration."
+    },
+    {
+      "id": "face-line",
+      "name": "Warm dark face lines",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#2C1B15",
+      "color": "#2C1B15",
+      "albedo": {
+        "dominant": "#2C1B15",
+        "secondary": [
+          "#4B3025"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#2C1B15",
+          "#4B3025"
+        ],
+        "pattern": "soft broad mottling",
+        "amplitude": 0.1,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.58,
+        "variation": 0.08,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "subtle broad painterly texture only",
+        "strength": 0.0,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle broad tactile variation",
+        "amplitude": 0.01,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration."
+    },
+    {
+      "id": "hidden",
+      "name": "Invisible root material",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / stylized IP PBR",
+      "baseColor": "#000000",
+      "color": "#000000",
+      "albedo": {
+        "dominant": "#000000",
+        "secondary": [
+          "#000000"
+        ],
+        "samplingNotes": "Stylized authored palette; source illustration lighting is not treated as measured albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#000000",
+          "#000000"
+        ],
+        "pattern": "soft broad mottling",
+        "amplitude": 0.1,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable world/object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.42,
+          "role": "broad color and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.22,
+          "role": "ridges, pores, grain, dents, or equivalent visible relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.08,
+          "role": "highlight breakup visible under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 1.0,
+        "variation": 0.08,
+        "map": "independent subtle procedural field",
+        "localResponse": "soft broad variation; keep cute forms readable"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "subtle broad painterly texture only",
+        "strength": 0.0,
+        "scale": 10.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "subtle broad tactile variation",
+        "amplitude": 0.01,
+        "scale": 8.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.2,
+        "notes": "Keep face and scarf folds soft; avoid muddy cavities."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#241B17"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Prefer MeshPhysicalMaterial when clearcoat, sheen, transmission, or thin-surface response is observed; otherwise use MeshStandardMaterial-compatible PBR channels.",
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use normal/bump/displacement only when they map to observed surface relief.",
+        "Use displacement geometry when the observed relief changes the close-up silhouette; texture-only relief is insufficient there."
+      ],
+      "notes": "Stylized and relightable; does not claim physical material recovery from the illustration."
+    }
+  ],
+  "repetitionSystems": [],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match the original asymmetric cute chibi body/head silhouette and raised arm pose.",
+      "componentRefs": [
+        "head-shell",
+        "body-shell",
+        "arm-raised",
+        "arm-relaxed",
+        "foot-left",
+        "foot-right",
+        "tuft-primary",
+        "tuft-secondary"
+      ],
+      "acceptance": [
+        "The silhouette reads as the chosen cute IP at a small size.",
+        "Head/face scale stays oversized and friendly."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Lock the parent-child hierarchy and visible mascot attachments before detail refinement.",
+      "componentRefs": [
+        "root",
+        "head-shell",
+        "body-shell",
+        "arm-raised",
+        "arm-relaxed",
+        "foot-left",
+        "foot-right",
+        "scarf-wrap",
+        "scarf-front",
+        "scarf-tail-long",
+        "scarf-tail-short"
+      ],
+      "acceptance": [
+        "Every limb and scarf part meets its named parent socket with controlled overlap.",
+        "Head, torso, limbs, and scarf layers remain independently readable."
+      ]
+    },
+    {
+      "id": "proportion-lock",
+      "goal": "Lock approximately two-head chibi proportion and stance",
+      "componentRefs": [
+        "head-shell",
+        "body-shell",
+        "arm-raised",
+        "arm-relaxed",
+        "foot-left",
+        "foot-right"
+      ],
+      "acceptance": [
+        "Head occupies about half the total character height.",
+        "Feet and arms remain short and rounded."
+      ]
+    },
+    {
+      "id": "feature-placement",
+      "goal": "Place the eyes, smile, tufts, and scarf from evidence",
+      "componentRefs": [
+        "eye-sclera-left",
+        "eye-sclera-right",
+        "eye-iris-left",
+        "eye-iris-right",
+        "eye-pupil-left",
+        "eye-pupil-right",
+        "eye-highlight-left",
+        "eye-highlight-right",
+        "brow-left",
+        "brow-right",
+        "mouth-smile",
+        "tuft-primary",
+        "tuft-secondary",
+        "scarf-front"
+      ],
+      "acceptance": [
+        "Eyes retain large amber irises and visible cream rims.",
+        "No nose or ears are introduced."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Set warm charcoal-brown plush body with gentle brightness lift, glossy amber eyes, cream tufts, and vivid teal scarf",
+      "componentRefs": [
+        "body-shell",
+        "head-shell",
+        "eye-sclera-left",
+        "eye-sclera-right",
+        "eye-iris-left",
+        "eye-iris-right",
+        "tuft-primary",
+        "tuft-secondary",
+        "scarf-wrap",
+        "scarf-front",
+        "scarf-tail-long",
+        "scarf-tail-short"
+      ],
+      "acceptance": [
+        "Teal scarf has strong contrast against body charcoal.",
+        "Eye glints and broad painterly surface variation remain restrained."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Render soft key/fill/rim lighting and gentle grounding",
+      "componentRefs": [
+        "head-shell",
+        "body-shell",
+        "scarf-wrap",
+        "scarf-front"
+      ],
+      "acceptance": [
+        "Character reads under neutral light and remains cutout-ready.",
+        "No hard shadow halo appears on transparency."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Prepare a turned render view without adding runtime rigging",
+      "componentRefs": [
+        "root",
+        "head-shell",
+        "scarf-tail-long",
+        "scarf-tail-short"
+      ],
+      "acceptance": [
+        "The three-quarter/look-back render reads as the same mascot.",
+        "Parts remain independently editable for future IP animation."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Keep the offline model and packaged sprite renders lean",
+      "componentRefs": [
+        "root",
+        "head-shell",
+        "body-shell",
+        "scarf-front",
+        "scarf-tail-long"
+      ],
+      "acceptance": [
+        "Triangle budget stays within 30000 source triangles.",
+        "Only front and turned renders are packaged unless rear is used."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "transparent sprite render quality",
+    "targetTriangles": 30000,
+    "maxDrawCalls": 32,
+    "textureSize": 512,
+    "fpsTarget": 30,
+    "optimizationPolicy": "Source model is rendered offline; keep geometry moderate and package only optimized transparent image frames."
+  },
+  "lightingFromPhoto": [
+    {
+      "id": "soft-key",
+      "type": "key light",
+      "positionHint": "upper-front-left",
+      "intensity": 1.0,
+      "notes": "Warm soft key; retain eye catchlights. Render with exposure 1.0 and ACES filmic tone mapping; retain a soft contact shadow under both feet with no transparent-edge halo."
+    },
+    {
+      "id": "warm-fill",
+      "type": "fill light",
+      "positionHint": "front-right",
+      "intensity": 0.48,
+      "notes": "Open shadows without flattening charcoal volume. Render with exposure 1.0 and ACES filmic tone mapping; retain a soft contact shadow under both feet with no transparent-edge halo."
+    },
+    {
+      "id": "teal-rim",
+      "type": "rim light",
+      "positionHint": "rear-side",
+      "intensity": 0.35,
+      "notes": "Soft narrow edge separation, no neon glow. Render with exposure 1.0 and ACES filmic tone mapping; retain a soft contact shadow under both feet with no transparent-edge halo."
+    }
+  ],
+  "proceduralStrategy": [
+    "Model the joined rounded head/body silhouette and small limbs with low-frequency forms first.",
+    "Place large sclera, amber iris, pupils, and catchlights from measured face landmarks.",
+    "Build twin tapered crown tufts and a layered scarf with clearly brighter teal albedo than the charcoal body.",
+    "Use soft rim light and broad material variation; avoid realistic pores, sharp seams, or noisy texture.",
+    "Render front and turned transparent images offline; no WebGL runtime is included in the mini-program."
+  ],
+  "animationAnchors": [
+    "root supports offline framing and turntable renders",
+    "named static parts remain independently editable for later rigging"
+  ],
+  "destructionAnchors": [
+    "actionProfile.destruction.fractureGroup marks detachable or breakable component sets",
+    "component seams and sockets define plausible break points instead of random explosions"
+  ],
+  "risks": [],
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Xiaomotuan cute mascot rounded chibi organic mascot amber glossy eyes charcoal body high contrast teal scarf stylized cloth scarf drape folds tube geometry material",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "62f2831e1d52eeb6dbb94a87c44fa25b1f4926626a7b1f8c2bcadc63e04e9471"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-roughness",
+        "file_path": "grimoire/glossary/3d_vocabulary.md",
+        "heading": "Material And PBR",
+        "key_path": null,
+        "score": 9.296634944968,
+        "snippets": [
+          "Roughness is microfacet scatter: high roughness reads matte and low roughness reads glossy. Recognition cues: low roughness reads as a sharp, mirror-like, tight specular highlight; high roughness reads as a blurry, wide, dim highlight and matte ..."
+        ],
+        "source_refs": [
+          {
+            "path": "grimoire/glossary/3d_vocabulary.md",
+            "heading": "Material And PBR",
+            "key_path": null
+          },
+          {
+            "path": "grimoire/intake/image_analysis.md",
+            "heading": "Layer 5 — Materials & surface (PBR)",
+            "key_path": null
+          },
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[1]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "grimoire/glossary/3d_vocabulary.md"
+          },
+          {
+            "kind": "notebooklm-research",
+            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
+            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
+          },
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation — merged recognition cues + Three.js target instead of duplicating this entity."
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-cylindergeometry-barrels-round-components",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[4]",
+        "score": 6.959211068229,
+        "snippets": [
+          "... có tiết diện tròn dạng nòng. Recognition cues: Long uniform-cross-section round part (barrel, suppressor, muzzle brake body, cleaning rod, magazine tube) Dấu hiệu nhận diện: Bộ phận tròn có tiết diện đều dài (nòng súng, ống giảm thanh, ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-capsulegeometry-rounded-edge-components",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[6]",
+        "score": 5.386043518442,
+        "snippets": [
+          "Maps to components with hemispherical rounded ends. Ánh xạ tới các bộ phận có đầu bo tròn dạng bán cầu. Recognition cues: Rod-like part with distinctly rounded (not flat-cut) ends, e.g. a knife spine or a safety lever Dấu hiệu nhận diện: Bộ phận ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[6]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  },
+  "pipelineRouting": {
+    "version": 1,
+    "track": "character-v1.5",
+    "source": "explicit",
+    "status": "resolved",
+    "classification": {
+      "kind": "character",
+      "confidence": 1.0,
+      "evidenceRefs": [
+        "pipeline-routing:explicit:character-v1.5"
+      ],
+      "provider": "pipeline-routing-cli",
+      "version": "1"
+    },
+    "conflicts": []
+  },
+  "rig": {
+    "version": "1.0",
+    "bindPose": "static",
+    "forward": "+Z",
+    "bones": []
+  }
+}

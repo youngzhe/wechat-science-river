@@ -1,0 +1,3 @@
+<view class="mascot-root {{compact ? 'mascot-compact' : ''}} {{turned ? 'mascot-turned' : ''}}" bindtap="turn" aria-label="小墨团" role="img">
+  <image class="mascot-image" src="{{image}}" mode="aspectFit" binderror="onImageError" />
+</view>

@@ -1,0 +1,3 @@
+# Projection route decision
+
+Projection baking is intentionally skipped. The goal is a stylized, relightable 3D IP model, not a pixel-matched print/decal or maximum-likeness reconstruction. The reference illustration contains baked painterly highlights and shadows, while the user explicitly requests a brighter, more saturated scarf for stronger contrast. Projecting the raw pixels would bake the old lighting and muted scarf onto the model and undermine both the new 3D lighting and the approved color direction. Rebuild visible colors/material zones as authored PBR materials; retain subtle painterly variation as restrained procedural vertex/material variation.

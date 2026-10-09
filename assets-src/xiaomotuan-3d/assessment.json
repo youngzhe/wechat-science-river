@@ -1,0 +1,656 @@
+{
+  "targetName": "Xiaomotuan cute mascot",
+  "sourceImage": "miniprogram/assets/xiaomotuan-small.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "non-human chibi mascot character",
+      "primaryDomain": "character",
+      "formLanguage": [
+        "organic",
+        "character-like",
+        "amorphous",
+        "fabric-like"
+      ],
+      "structureKind": [
+        "compound object",
+        "layered parts",
+        "articulated-looking appendages"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "static pose with discrete pre-rendered turn"
+      ],
+      "materialFamilies": [
+        "matte charcoal soot-like body",
+        "glossy eye surfaces",
+        "cloth scarf",
+        "warm cream tuft surfaces"
+      ],
+      "notes": "Preserve the cute chibi proportion and friendly expression. This is a stylized non-human mascot, not a human anatomy study. User prefers the first/cuter visual direction and stronger teal scarf contrast."
+    },
+    "complexity": {
+      "tier": "moderate",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 0,
+        "materialLayerCount": 2,
+        "localDetailDensity": 2,
+        "occlusionRisk": 3,
+        "actionReadinessNeed": 1
+      },
+      "estimatedCounts": {
+        "macroComponents": 5,
+        "mesoComponents": 7,
+        "microFeatureGroups": 9,
+        "materialLayers": 4,
+        "repetitionSystems": 0
+      },
+      "reasoning": [
+        "One organic body with small limbs, two eyes, asymmetric crown tufts, and a wrapped scarf with two trailing ends.",
+        "Several visible material/color regions and small face details make moderate detail appropriate.",
+        "The source is front-only, so side and back inference raises view uncertainty."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "moderate",
+      "minimumComponentLevels": [
+        "macro",
+        "meso"
+      ],
+      "needsRepetitionSystems": false,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "A layered character needs a readable parent-child hierarchy for body, limbs, tufts, eyes, and scarf; it does not need repeated systems or a production rig."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      {
+        "region": "rear head and body",
+        "status": "hidden",
+        "confidence": 0.35,
+        "resolution": "stylized continuation of charcoal body volume; keep asymmetry low"
+      },
+      {
+        "region": "scarf wrap join and knot",
+        "status": "occluded",
+        "confidence": 0.35,
+        "resolution": "simple low-profile rear crossover inferred from visible chest band and trailing ends"
+      },
+      {
+        "region": "eye depth and socket profile",
+        "status": "uncertain from front projection",
+        "confidence": 0.55,
+        "resolution": "shallow inset sockets with glossy separate eye parts; verify three-quarter view"
+      }
+    ],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 9,
+      "details": [
+        {
+          "id": "zone-r0c0",
+          "kind": "silhouette",
+          "description": "Left cranial contour narrows toward the cheek; pale sclera and amber edge of the left eye enter the crop.",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "preserve round head contour and visible eye/sclera overlap",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "body.shell; face.eye.character-right"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r0c0.png",
+          "confidence": 0.82
+        },
+        {
+          "id": "zone-r0c1",
+          "kind": "surface-detail",
+          "description": "Two warm charcoal tones meet at the sloping crown silhouette; a tuft socket overlaps the head mass with a soft warm rim.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "retain soft soot-like surface and visible crown attachment",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "body.shell; tuft.crown"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r0c1.png",
+          "confidence": 0.76
+        },
+        {
+          "id": "zone-r0c2",
+          "kind": "silhouette",
+          "description": "Smaller rear crown tuft ends in a curved leaf/flame tip with a warm cream fill and ochre outline.",
+          "region": {
+            "x": 0.6667,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "keep the secondary tuft tapered, smaller, and curved",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tuft.secondary"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r0c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "zone-r1c0",
+          "kind": "attachment",
+          "description": "Raised short arm bends toward the cheek and overlaps the side of the body; part of the opposite eye is visible.",
+          "region": {
+            "x": 0.0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "make the raised arm read as attached and keep a cute compact pose",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "limb.arm-raised; face.eye.character-left"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r1c0.png",
+          "confidence": 0.84
+        },
+        {
+          "id": "zone-r1c1",
+          "kind": "face-detail",
+          "description": "Large amber iris has a dark pupil, orange radial variation, pale sclera, and a high-value catchlight; curved brow and small smile sit above a folded teal scarf band.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "preserve oversized eye scale and friendly face; boost scarf hue/value contrast against charcoal body",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "face.eye; face.brow; face.mouth; scarf.band"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r1c1.png",
+          "confidence": 0.93
+        },
+        {
+          "id": "zone-r1c2",
+          "kind": "material-edge",
+          "description": "Head outline remains organic at the lateral cheek; scarf tail emerges behind the torso with a frayed tapered silhouette.",
+          "region": {
+            "x": 0.6667,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "separate body contour from scarf tail; do not model edge fraying as holes",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "body.shell; scarf.tail.character-left"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r1c2.png",
+          "confidence": 0.8
+        },
+        {
+          "id": "zone-r2c0",
+          "kind": "silhouette",
+          "description": "Lower body tapers into a small rounded foot; the other foot is partially visible at the edge.",
+          "region": {
+            "x": 0.0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "keep feet small relative to the body and ground both feet",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "limb.feet"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r2c0.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "zone-r2c1",
+          "kind": "surface-detail",
+          "description": "Round charcoal torso has warm mottled painterly patches; short opposite arm overlaps the torso near the scarf.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "use subtle broad albedo/roughness variation without noisy micro-texture",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "body.shell; limb.arm-relaxed"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r2c1.png",
+          "confidence": 0.82
+        },
+        {
+          "id": "zone-r2c2",
+          "kind": "material-edge",
+          "description": "Two scarf tails overlap and curve downward; teal base is visibly lighter than the shadowed underside, with warm gold flecks and broad fold lines.",
+          "region": {
+            "x": 0.6667,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "meso",
+          "affects": "make scarf brighter and more saturated teal than the body, with readable layered folds and two distinct ends",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "scarf.tail.front; scarf.tail.back; scarf.material"
+          },
+          "evidenceRef": "evidence/detail-zones/zone-r2c2.png",
+          "confidence": 0.91
+        }
+      ]
+    },
+    "anatomy": {
+      "styleHeads": 2.0,
+      "proportions": {
+        "headUnit": 0.5,
+        "torso": 0.58,
+        "legs": 0.31,
+        "shoulderWidth": 0.92,
+        "hipWidth": 0.8,
+        "measurementNote": "Approximate chibi/creature proportions measured against crown-to-scarf head mass; not human anatomy."
+      },
+      "pose": {
+        "type": "front-facing grounded stance; character-right upper arm raised toward cheek; character-left arm relaxed by scarf",
+        "jointAngles": {
+          "neck": [
+            0,
+            0,
+            0
+          ],
+          "leftShoulder": [
+            0,
+            0,
+            0
+          ],
+          "rightShoulder": [
+            0,
+            0,
+            0
+          ],
+          "leftElbow": [
+            0,
+            0,
+            0
+          ],
+          "rightElbow": [
+            0,
+            0,
+            0
+          ],
+          "leftWrist": [
+            0,
+            0,
+            0
+          ],
+          "rightWrist": [
+            0,
+            0,
+            0
+          ],
+          "leftHip": [
+            0,
+            0,
+            0
+          ],
+          "rightHip": [
+            0,
+            0,
+            0
+          ],
+          "leftKnee": [
+            0,
+            0,
+            0
+          ],
+          "rightKnee": [
+            0,
+            0,
+            0
+          ],
+          "leftAnkle": [
+            0,
+            0,
+            0
+          ],
+          "rightAnkle": [
+            0,
+            0,
+            0
+          ]
+        },
+        "confidence": 0.62,
+        "evidenceRef": "evidence/landmarks.png"
+      },
+      "faceLandmarks": {
+        "hairline": 0.04,
+        "eyeLine": 0.62,
+        "eyeSpacing": 0.2,
+        "noseBase": 0.74,
+        "mouthLine": 0.81,
+        "earTop": null,
+        "earBottom": null,
+        "note": "No nose or ears are visible; noseBase is a lower-face plane guide only. Approximate normalized readings against the organic head bounding box.",
+        "evidenceRef": "evidence/landmarks.png"
+      },
+      "features": [
+        {
+          "name": "oversized amber eyes",
+          "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+          "confidence": 0.9
+        },
+        {
+          "name": "two uneven crown flame/leaf tufts",
+          "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+          "confidence": 0.9
+        },
+        {
+          "name": "wrapped teal scarf and two trailing cloth ends",
+          "evidenceRef": "miniprogram/assets/xiaomotuan-small.png",
+          "confidence": 0.9
+        },
+        {
+          "name": "hidden rear scarf join and back silhouette",
+          "evidenceRef": "inferred stylized rear view",
+          "confidence": 0.35
+        },
+        {
+          "name": "teal scarf/body contrast intentionally increased from reference as user-directed style change",
+          "evidenceRef": "user direction 2026-10-09",
+          "confidence": 1.0
+        }
+      ],
+      "confidence": 0.67,
+      "note": "Non-human chibi character. Approximate proportions; the overlay guides measurement but the face remains deliberately oversized and cute.",
+      "applies": true
+    },
+    "sourceImage": "miniprogram/assets/xiaomotuan-small.png",
+    "pipelineRouting": {
+      "version": 1,
+      "track": "character-v1.5",
+      "source": "explicit",
+      "status": "resolved",
+      "classification": {
+        "kind": "character",
+        "confidence": 1.0,
+        "evidenceRefs": [
+          "pipeline-routing:explicit:character-v1.5"
+        ],
+        "provider": "pipeline-routing-cli",
+        "version": "1"
+      },
+      "conflicts": []
+    }
+  },
+  "qualityContract": {
+    "qualityBar": "moderate",
+    "definitionOfDone": [
+      "The front silhouette preserves the rounded chibi body, oversized amber eyes, twin crown tufts, and wrapped scarf from the approved illustration.",
+      "The scarf is a clearly more saturated brighter teal than the charcoal body, with two clean tapered cloth tails and readable folds.",
+      "Front, three-quarter, profile, and rear renders have coherent attachments and no floating components; inferred surfaces remain simple and explicitly stylized.",
+      "Transparent front and turned renders remain legible at the mini-program display size and preserve a friendly, cute expression."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 4,
+      "mesoComponents": 5,
+      "microFeatureGroups": 6,
+      "materialLayers": 3,
+      "repetitionSystems": 0,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "pipelineRouting": {
+    "version": 1,
+    "track": "character-v1.5",
+    "source": "explicit",
+    "status": "resolved",
+    "classification": {
+      "kind": "character",
+      "confidence": 1.0,
+      "evidenceRefs": [
+        "pipeline-routing:explicit:character-v1.5"
+      ],
+      "provider": "pipeline-routing-cli",
+      "version": "1"
+    },
+    "conflicts": []
+  },
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Xiaomotuan cute mascot rounded chibi organic mascot amber glossy eyes charcoal body high contrast teal scarf stylized cloth scarf drape folds tube geometry material",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "62f2831e1d52eeb6dbb94a87c44fa25b1f4926626a7b1f8c2bcadc63e04e9471"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-roughness",
+        "file_path": "grimoire/glossary/3d_vocabulary.md",
+        "heading": "Material And PBR",
+        "key_path": null,
+        "score": 9.296634944968,
+        "snippets": [
+          "Roughness is microfacet scatter: high roughness reads matte and low roughness reads glossy. Recognition cues: low roughness reads as a sharp, mirror-like, tight specular highlight; high roughness reads as a blurry, wide, dim highlight and matte ..."
+        ],
+        "source_refs": [
+          {
+            "path": "grimoire/glossary/3d_vocabulary.md",
+            "heading": "Material And PBR",
+            "key_path": null
+          },
+          {
+            "path": "grimoire/intake/image_analysis.md",
+            "heading": "Layer 5 — Materials & surface (PBR)",
+            "key_path": null
+          },
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[1]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "grimoire/glossary/3d_vocabulary.md"
+          },
+          {
+            "kind": "notebooklm-research",
+            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
+            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
+          },
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation — merged recognition cues + Three.js target instead of duplicating this entity."
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-cylindergeometry-barrels-round-components",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[4]",
+        "score": 6.959211068229,
+        "snippets": [
+          "... có tiết diện tròn dạng nòng. Recognition cues: Long uniform-cross-section round part (barrel, suppressor, muzzle brake body, cleaning rod, magazine tube) Dấu hiệu nhận diện: Bộ phận tròn có tiết diện đều dài (nòng súng, ống giảm thanh, ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-capsulegeometry-rounded-edge-components",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[6]",
+        "score": 5.386043518442,
+        "snippets": [
+          "Maps to components with hemispherical rounded ends. Ánh xạ tới các bộ phận có đầu bo tròn dạng bán cầu. Recognition cues: Rod-like part with distinctly rounded (not flat-cut) ends, e.g. a knife spine or a safety lever Dấu hiệu nhận diện: Bộ phận ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[6]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

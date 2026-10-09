@@ -1,0 +1,20 @@
+<view class="ending-shell">
+  <view class="ending-hero">
+    <view class="seal">✦</view><text class="eyebrow">科学长河 · 节点已点亮</text><text class="ending-title">光的探索者</text><text class="ending-subtitle">你不是只找到答案，也留下了怎么找到答案的路。</text>
+    <mascot class="ending-buddy" />
+  </view>
+  <view class="journey-card paper">
+    <text class="section-title">你的发现笔记</text>
+    <view class="journey-line"><view class="journey-dot"></view><view><text class="journey-label">最初猜想</text><text class="journey-copy">{{initialText}}</text></view></view>
+    <view class="journey-line"><view class="journey-dot"></view><view><text class="journey-label">关键证据</text><text class="journey-copy">{{evidenceSummary}}</text></view></view>
+    <view class="journey-line"><view class="journey-dot final"></view><view><text class="journey-label">现在的认识</text><text class="journey-copy">{{currentText}}</text></view></view>
+    <text class="small-reflection">你的预测可以改变；观察记录会一直保留。</text>
+  </view>
+  <view class="archive-card paper">
+    <view class="archive-head"><view><text class="eyebrow">可展开的档案</text><text class="section-title">牛顿与光学</text></view><text class="archive-open">已解锁</text></view>
+    <view wx:for="{{archive}}" wx:key="label" class="archive-row"><text class="archive-tag">{{item.label}}</text><view class="archive-copy-wrap"><text class="archive-copy">{{item.text}}</text><text wx:if="{{item.url}}" class="source-link" data-url="{{item.url}}" bindtap="copySource">点按复制来源链接 ↗</text></view></view>
+    <view class="parent-question"><text class="question-mark">?</text><text>哪条证据最影响你的想法？如果观察结果相反，你会怎么解释？</text></view>
+  </view>
+  <view class="next-preview"><text class="next-kicker">长河继续向前</text><text class="next-title">望远镜边缘为什么会有彩色？</text><text class="next-status">下一章问题预告 · 尚未开放</text></view>
+  <button class="primary home-button" bindtap="backHome">回到科学长河</button>
+</view>

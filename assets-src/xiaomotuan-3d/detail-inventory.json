@@ -1,0 +1,191 @@
+{
+  "sourceImage": "/Users/yangzhe/work_station/aistudio/science_river/wechat-science-river/miniprogram/assets/xiaomotuan-small.png",
+  "zonesDir": "/Users/yangzhe/work_station/aistudio/science_river/wechat-science-river/assets-src/xiaomotuan-3d/evidence/detail-zones",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 9,
+    "details": [
+      {
+        "id": "zone-r0c0",
+        "kind": "silhouette",
+        "description": "Left cranial contour narrows toward the cheek; pale sclera and amber edge of the left eye enter the crop.",
+        "region": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "preserve round head contour and visible eye/sclera overlap",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "body.shell; face.eye.character-right"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r0c0.png",
+        "confidence": 0.82
+      },
+      {
+        "id": "zone-r0c1",
+        "kind": "surface-detail",
+        "description": "Two warm charcoal tones meet at the sloping crown silhouette; a tuft socket overlaps the head mass with a soft warm rim.",
+        "region": {
+          "x": 0.3333,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "retain soft soot-like surface and visible crown attachment",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "body.shell; tuft.crown"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r0c1.png",
+        "confidence": 0.76
+      },
+      {
+        "id": "zone-r0c2",
+        "kind": "silhouette",
+        "description": "Smaller rear crown tuft ends in a curved leaf/flame tip with a warm cream fill and ochre outline.",
+        "region": {
+          "x": 0.6667,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "keep the secondary tuft tapered, smaller, and curved",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "tuft.secondary"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r0c2.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "zone-r1c0",
+        "kind": "attachment",
+        "description": "Raised short arm bends toward the cheek and overlaps the side of the body; part of the opposite eye is visible.",
+        "region": {
+          "x": 0.0,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "make the raised arm read as attached and keep a cute compact pose",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "limb.arm-raised; face.eye.character-left"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r1c0.png",
+        "confidence": 0.84
+      },
+      {
+        "id": "zone-r1c1",
+        "kind": "face-detail",
+        "description": "Large amber iris has a dark pupil, orange radial variation, pale sclera, and a high-value catchlight; curved brow and small smile sit above a folded teal scarf band.",
+        "region": {
+          "x": 0.3333,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "preserve oversized eye scale and friendly face; boost scarf hue/value contrast against charcoal body",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "face.eye; face.brow; face.mouth; scarf.band"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r1c1.png",
+        "confidence": 0.93
+      },
+      {
+        "id": "zone-r1c2",
+        "kind": "material-edge",
+        "description": "Head outline remains organic at the lateral cheek; scarf tail emerges behind the torso with a frayed tapered silhouette.",
+        "region": {
+          "x": 0.6667,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "separate body contour from scarf tail; do not model edge fraying as holes",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "body.shell; scarf.tail.character-left"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r1c2.png",
+        "confidence": 0.8
+      },
+      {
+        "id": "zone-r2c0",
+        "kind": "silhouette",
+        "description": "Lower body tapers into a small rounded foot; the other foot is partially visible at the edge.",
+        "region": {
+          "x": 0.0,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "keep feet small relative to the body and ground both feet",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "limb.feet"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r2c0.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "zone-r2c1",
+        "kind": "surface-detail",
+        "description": "Round charcoal torso has warm mottled painterly patches; short opposite arm overlaps the torso near the scarf.",
+        "region": {
+          "x": 0.3333,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "use subtle broad albedo/roughness variation without noisy micro-texture",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "body.shell; limb.arm-relaxed"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r2c1.png",
+        "confidence": 0.82
+      },
+      {
+        "id": "zone-r2c2",
+        "kind": "material-edge",
+        "description": "Two scarf tails overlap and curve downward; teal base is visibly lighter than the shadowed underside, with warm gold flecks and broad fold lines.",
+        "region": {
+          "x": 0.6667,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "make scarf brighter and more saturated teal than the body, with readable layered folds and two distinct ends",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "scarf.tail.front; scarf.tail.back; scarf.material"
+        },
+        "evidenceRef": "evidence/detail-zones/zone-r2c2.png",
+        "confidence": 0.91
+      }
+    ]
+  },
+  "authoringInstruction": "Every visible identity feature maps to a real component.localFeatures or material.localOverrides entry in the sculpt spec."
+}

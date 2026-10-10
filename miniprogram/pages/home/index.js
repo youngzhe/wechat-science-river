@@ -17,7 +17,7 @@ Page({
   },
   onShow() {this.setData({...buildJourney(loadSave(wx)),muted:sound.isMuted(),leaving:false});},
   onHide() { if(this._transition)clearTimeout(this._transition); },
-  onUnload() { if(this._transition)clearTimeout(this._transition); },
+  onUnload() { if(this._transition)clearTimeout(this._transition); sound.destroy(); },
   switchTab(e) {sound.startBgm();sound.play('tap');this.setData({activeTab:e.currentTarget.dataset.tab,selectedCard:null});},
   startChapter() {
     sound.startBgm();sound.play('tap');

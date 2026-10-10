@@ -67,3 +67,14 @@
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,235,182,.48), 0 8rpx 22rpx rgba(30,31,25,.24); } 80%,100% { box-shadow: 0 0 0 18rpx rgba(255,235,182,0), 0 8rpx 22rpx rgba(30,31,25,.24); } }
 @keyframes room-float { from { transform: scale(1.03) translate3d(0,0,0); } to { transform: scale(1.08) translate3d(-6rpx,-8rpx,0); } }
 @keyframes dust-drift { from { background-position: 0 0, 34rpx 60rpx; } to { background-position: 80rpx -90rpx, -35rpx -120rpx; } }
+.top-left { flex:1; }
+.chapter-pill { padding:0 14rpx; font-size:18rpx; }
+.top-left .progress-dots { display:none; }
+.top-actions { flex:0 0 auto; }
+.tool-button { min-width:0; padding:0 13rpx; font-size:19rpx; }
+.tool-button.sound-btn { width:62rpx; padding:0; }
+.dialogue-copy { padding-right:44rpx; }
+.tool-button { width:auto !important; min-width:0; }
+.tool-button.sound-btn { width:62rpx !important; }
+.close-clue,.dialogue-close { width:64rpx !important; min-width:0; padding:0; }
+.continue-button { width:100% !important; }

@@ -36,3 +36,10 @@ test('lens recombination needs a complete spectrum and a correctly placed screen
   assert.equal(partial.resultKind, 'partial_overlap');
   assert.notEqual(partial.evidenceKind, 'E4');
 });
+
+test('a screen before the second prism cannot record a refraction observation', () => {
+  const result = simulateOptics({ ...base, mode:'selective_refraction', prism2InPath:true, slitWidth:.12, selectedBand:'red', screenPosition:.30 });
+  assert.equal(result.evidenceKind,null);
+  assert.equal(result.directionChanged,false);
+  assert.match(result.message,/第二块棱镜前/);
+});

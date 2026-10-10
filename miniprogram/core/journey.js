@@ -6,12 +6,15 @@ function chapterDestination(save) {
   return save.observations.length ? '/pages/lab/index' : '/pages/study/index';
 }
 function buildJourney(save) {
-  const has = id => save.completedMilestones.includes(id) || save.observations.some(o => o.evidenceKind === id);
+  // 单一来源：观察过的 evidence。和 notebook.canConclude / journey step 保持一致。
+  // 完成标志类的（linked_evidence、transfer_observation）仍走 completedMilestones，因为它们
+  // 是程序主动写入的额外校验位，而不是直接对应某条观察。
+  const hasEvidence = id => save.observations.some(o => o.evidenceKind === id);
   const steps = [
     { title: '调查书房', detail: '认识器材，留下最初的猜想', done: save.inspectedObjects.length >= 4 && !!save.currentHypothesis },
-    { title: '展开光谱', detail: '记录白光通过第一块棱镜的观察', done: has('E1') },
-    { title: '单色再试', detail: '比较窄色带经过第二块棱镜的变化', done: has('E2') && has('E3') },
-    { title: '让颜色相遇', detail: '用透镜寻找近白色光斑', done: has('E4') },
+    { title: '展开光谱', detail: '记录白光通过第一块棱镜的观察', done: hasEvidence('E1') },
+    { title: '单色再试', detail: '比较窄色带经过第二块棱镜的变化', done: hasEvidence('E2') && hasEvidence('E3') },
+    { title: '让颜色相遇', detail: '用透镜寻找近白色光斑', done: hasEvidence('E4') },
     { title: '预测与验证', detail: '换一种颜色，验证自己的预测', done: save.completedMilestones.includes('transfer_observation') },
     { title: '整理发现档案', detail: '关联证据，回顾想法怎样改变', done: save.completed },
   ];
@@ -25,7 +28,7 @@ function buildJourney(save) {
     chapterStatus: save.completed ? '档案已完成' : seen ? '调查进行中' : '等待你的第一项发现',
     continueLabel: save.completed ? '查看发现档案' : seen ? '继续探索' : '开始探索',
     discoveries: save.observations.slice().reverse().map(o => ({ ...o, title: o.evidenceKind ? '发现 ' + o.evidenceKind : '一次探索尝试', modeLabel: {dispersion:'展开光谱',selective_refraction:'单色再试',recombination:'合回白光'}[o.apparatusSnapshot.mode] || '实验观察' })),
-    atlas: atlas.map(item => ({ ...item, unlocked: item.kind === 'instrument' || has(item.evidence), status: item.kind === 'instrument' ? '器材手册' : has(item.evidence) ? '已点亮' : '待发现', lockHint: '记录对应实验观察后点亮' })),
+    atlas: atlas.map(item => ({ ...item, unlocked: item.kind === 'instrument' || hasEvidence(item.evidence), status: item.kind === 'instrument' ? '器材手册' : hasEvidence(item.evidence) ? '已点亮' : '待发现', lockHint: '记录对应实验观察后点亮' })),
   };
 }
 module.exports = { buildJourney, chapterDestination };

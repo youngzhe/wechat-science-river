@@ -117,3 +117,10 @@
 .mode-tab { min-height:74rpx; font-size:23rpx; }
 .action-button { font-size:21rpx; }
 .capture-button { font-size:25rpx; }
+.notebook-link.notebook-count { width:132rpx !important; min-width:132rpx; }
+.notebook-link.sound-btn { width:68rpx !important; min-width:68rpx; }
+.device-button,.mode-tab,.band-button,.action-button { width:0; min-width:0; }
+.stepper { width:70rpx !important; min-width:70rpx; }
+.narrow-button { width:auto !important; min-width:0; }
+.close-clue { width:64rpx !important; min-width:64rpx; padding:0; }
+.capture-button { width:100% !important; }

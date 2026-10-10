@@ -1,5 +1,5 @@
 const { loadSave, writeSave } = require('../../core/save');
-const { simulateOptics, BAND_NAMES } = require('../../core/optics');
+const { simulateOptics, FOCUS_RANGE } = require('../../core/optics');
 const { captureObservation, linkEvidence } = require('../../core/notebook');
 const { dispatchChapterEvent } = require('../../core/chapter');
 const { hints } = require('../../content/chapter1');
@@ -17,6 +17,8 @@ const bandOptions = [
 ];
 function copy(value) { return JSON.parse(JSON.stringify(value)); }
 function getInstruction(apparatus, result) {
+  if (apparatus.prism1InPath && (apparatus.prism1Angle < 18 || apparatus.prism1Angle > 48)) return { step: '调整光路', title: '把棱镜角度调回有效范围', detail: '用角度两侧的按钮微调，让光线正确穿过棱镜。', target: 'angle' };
+  if (apparatus.prism1InPath && !result.lightOnScreen) return { step: '接住光束', title: '移动白屏，让光落在屏上', detail: '左右拖动画面中的白屏，观察光路的变化。', target: 'screen' };
   if (apparatus.mode === 'dispersion') {
     if (!apparatus.prism1InPath) return { step: '第 1 步', title: '把第一块棱镜放进光路', detail: '观察白光经过棱镜后，白屏上留下了什么。', target: 'prism1' };
     if (apparatus.prism1Angle < 18 || apparatus.prism1Angle > 48) return { step: '第 1 步', title: '把棱镜角度调回有效范围', detail: '用角度两侧的按钮微调，再观察白屏。', target: 'angle' };
@@ -27,11 +29,13 @@ function getInstruction(apparatus, result) {
     if (!apparatus.prism1InPath) return { step: '第 1 步', title: '先把第一块棱镜放进光路', detail: '形成光谱后，再从中选一种颜色。', target: 'prism1' };
     if (!apparatus.selectedBand || apparatus.slitWidth > 0.25) return { step: '第 2 步', title: '选一种颜色作为窄色带', detail: '点选下方任意色带；选中后会自动调窄。', target: 'band' };
     if (!apparatus.prism2InPath) return { step: '第 3 步', title: '让窄色带经过第二块棱镜', detail: '留意颜色和前进方向分别发生了什么变化。', target: 'prism2' };
+    if (!result.directionChanged) return { step: '第 4 步', title: '把白屏移到第二块棱镜后', detail: '向右移动白屏，接住折转后的窄色带。', target: 'screen' };
     return { step: '观察结果', title: '颜色变了，还是方向变了？', detail: '比较光带前后的颜色与方向，然后记下观察。', target: 'capture' };
   }
   if (!apparatus.prism1InPath) return { step: '第 1 步', title: '先让第一块棱镜展开白光', detail: '完整光谱出现后，再尝试让不同颜色重新会聚。', target: 'prism1' };
   if (!apparatus.lensInPath) return { step: '第 2 步', title: '把透镜放到完整光谱的光路上', detail: '观察透镜能否让分开的颜色重新聚在一起。', target: 'lens' };
-  if (apparatus.screenPosition < 0.5 || apparatus.screenPosition > 0.72) return { step: '第 3 步', title: '移动白屏寻找会聚位置', detail: '拖动画面中的白屏，或使用下方滑杆。', target: 'screen' };
+  if (apparatus.screenPosition < FOCUS_RANGE[0] || apparatus.screenPosition > FOCUS_RANGE[1]) return { step: '第 3 步', title: '移动白屏寻找会聚位置', detail: '向图中“会聚处”移动白屏，或微调下方滑杆。', target: 'screen' };
+  if (apparatus.blockedBands.length) return { step: '对照观察', title: '少一段颜色，光斑有什么不同？', detail: '比较被挡色带前后，点“恢复被挡色带”再观察。', target: 'block' };
   return { step: '观察结果', title: '光斑接近白色了吗？', detail: '记录完整光谱会聚后的观察，再比较挡住一段色带时的变化。', target: 'capture' };
 }
 
@@ -49,7 +53,7 @@ Page({
     this.refresh();
   },
   onShow() { const save = loadSave(wx); save.lastPage = 'pages/lab/index'; writeSave(wx, save); this._canvas = null; this.refresh(); this.setData({ muted: sound.isMuted() }); setTimeout(() => this.drawScene(), 60); },
-  onUnload() { this._canvas = null; if (this._drawTimer) { clearTimeout(this._drawTimer); this._drawTimer = null; } },
+  onUnload() { this._canvas = null; if (this._drawTimer) { clearTimeout(this._drawTimer); this._drawTimer = null; } sound.destroy(); },
   refresh() {
     const save = loadSave(wx);
     const apparatus = save.apparatus;
@@ -138,7 +142,6 @@ Page({
     let save = loadSave(wx);
     const captured = captureObservation(save, result);
     save = captured.save;
-    if (result.evidenceKind === 'E4' && !save.completedMilestones.includes('E4')) save.completedMilestones.push('E4');
     writeSave(wx, save);
     sound.play(result.evidenceKind ? 'success' : 'tap');
     this.setData({ observationCount: save.observations.length, result, stageLabel: result.evidenceKind ? `已记录 ${result.evidenceKind}` : '已记录一次尝试', instruction: { step: '继续观察', title: '这条记录保存在笔记里', detail: '试试调整一种器材，看看观察结果会不会改变。', target: '' } });

@@ -1,3 +1,5 @@
+const LAYOUT = { prism: .22, slit: .40, prism2: .52, lens: .50, screenOrigin: .18, screenTravel: .82, focusPosition: .62 };
+const FOCUS_RANGE = [.58, .66];
 const BANDS = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'];
 const BAND_NAMES = { red: '红', orange: '橙', yellow: '黄', green: '绿', blue: '蓝', violet: '紫' };
 
@@ -41,6 +43,11 @@ function simulateOptics(state) {
       result.message = '先把窄缝对准一种颜色，再观察它经过第二块棱镜的变化。';
       return result;
     }
+    if (state.prism2InPath && LAYOUT.screenOrigin + state.screenPosition * LAYOUT.screenTravel <= LAYOUT.prism2) {
+      result.bands = [state.selectedBand]; result.lightOnScreen = !blocked.includes(state.selectedBand);
+      result.message = '白屏还在第二块棱镜前，向右移动白屏，接住折转后的光束。';
+      return result;
+    }
     if (!state.prism2InPath) {
       result.bands = [state.selectedBand];
       result.lightOnScreen = !blocked.includes(state.selectedBand);
@@ -63,7 +70,7 @@ function simulateOptics(state) {
 
   if (state.mode === 'recombination') {
     const complete = BANDS.every((band) => !blocked.includes(band));
-    const focusedScreen = state.screenPosition >= 0.5 && state.screenPosition <= 0.72;
+    const focusedScreen = state.screenPosition >= FOCUS_RANGE[0] && state.screenPosition <= FOCUS_RANGE[1];
     if (state.lensInPath && complete && focusedScreen) {
       result.resultKind = 'near_white_overlap';
       result.bands = BANDS.slice();
@@ -83,4 +90,4 @@ function simulateOptics(state) {
   return result;
 }
 
-module.exports = { BANDS, BAND_NAMES, simulateOptics };
+module.exports = { BANDS, BAND_NAMES, LAYOUT, FOCUS_RANGE, simulateOptics };

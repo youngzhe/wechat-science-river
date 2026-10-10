@@ -1,8 +1,8 @@
-const { BANDS, simulateOptics } = require('./optics');
+const { BANDS, LAYOUT, simulateOptics } = require('./optics');
 const COLORS = {red:'#df6050',orange:'#f19a40',yellow:'#dfbf42',green:'#58a26b',blue:'#518dcc',violet:'#9271b3'};
 function sceneGeometry(a, w, h) {
-  const cy = h * .46, prismX = w * .22, slitX = w * .40, secondX = w * .52, lensX = w * .50;
-  const screenX = w * (.18 + a.screenPosition * .82), focusX = w * (.18 + .62 * .82);
+  const cy = h * .46, prismX = w * LAYOUT.prism, slitX = w * LAYOUT.slit, secondX = w * LAYOUT.prism2, lensX = w * LAYOUT.lens;
+  const screenX = w * (LAYOUT.screenOrigin + a.screenPosition * LAYOUT.screenTravel), focusX = w * (LAYOUT.screenOrigin + LAYOUT.focusPosition * LAYOUT.screenTravel);
   const result = simulateOptics(a), rays = [];
   const selected = a.mode === 'selective_refraction' && BANDS.includes(a.selectedBand) && a.slitWidth <= .25;
   const inPath = a.prism1InPath && a.prism1Angle >= 18 && a.prism1Angle <= 48;

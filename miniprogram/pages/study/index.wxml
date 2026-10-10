@@ -16,6 +16,9 @@
   </view>
   <view class="study-panel paper">
     <view class="task-row"><text class="task-eyebrow">当前任务</text><text class="task-text">找到这道彩光留下的线索</text></view>
+    <view class="clue-chips">
+      <button size="mini" wx:for="{{clueChips}}" wx:key="id" class="clue-chip {{inspected[item.id] ? 'seen' : ''}} {{guidedObjects && !inspected[item.id] ? 'guided' : ''}}" data-object="{{item.id}}" bindtap="inspect" aria-label="查看{{item.label}}"><text class="chip-label">{{item.label}}</text><text class="chip-state">{{inspected[item.id] ? '已记录' : '查看'}}</text></button>
+    </view>
     <view class="dialogue" wx:if="{{!dialogueHidden}}">
       <mascot class="buddy" compact />
       <view class="dialogue-copy"><text class="buddy-name">小墨团</text><text class="buddy-line">{{dialogue}}</text></view>

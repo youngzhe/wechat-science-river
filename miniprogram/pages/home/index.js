@@ -9,11 +9,14 @@ const tabs = [
   {id:'journey',label:'我的旅程',icon:'person'},
 ];
 Page({
-  data: {tabs,regions,activeTab:'explore',muted:false,continueLabel:'开始探索',discoveries:[],atlas:[],steps:[],progress:0,completedSteps:0,showInvitation:false,selectedCard:null,leaving:false,headerTop:70},
+  data: {tabs,regions,activeTab:'explore',muted:false,continueLabel:'开始探索',discoveries:[],atlas:[],steps:[],progress:0,completedSteps:0,showInvitation:false,selectedCard:null,leaving:false,headerTop:70,contentTop:230},
   onLoad() {
     const info=wx.getWindowInfo?wx.getWindowInfo():wx.getSystemInfoSync();
     const capsule=wx.getMenuButtonBoundingClientRect?wx.getMenuButtonBoundingClientRect():null;
-    this.setData({headerTop:capsule?capsule.bottom+15:(info.statusBarHeight||24)+48});
+    const headerTop=capsule?capsule.bottom+15:(info.statusBarHeight||24)+48;
+    // .world-header 高 255rpx，换算成 px；再加 14px 间距，保证 map-content 不被 header 盖住
+    const contentTop=headerTop+Math.round(255/750*info.windowWidth)+14;
+    this.setData({headerTop,contentTop});
   },
   onShow() {this.setData({...buildJourney(loadSave(wx)),muted:sound.isMuted(),leaving:false});},
   onHide() { if(this._transition)clearTimeout(this._transition); },

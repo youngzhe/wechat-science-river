@@ -2,9 +2,16 @@ const { loadSave, writeSave } = require('../../core/save');
 const { dispatchChapterEvent } = require('../../core/chapter');
 const { objects, hypotheses, hints } = require('../../content/chapter1');
 const sound = require('../../core/sound');
+const clueChips = [
+  { id: 'window', label: '窗缝' },
+  { id: 'prism', label: '棱镜' },
+  { id: 'screen', label: '白屏' },
+  { id: 'manuscript', label: '手稿' },
+];
 Page({
   data: {
     hypotheses,
+    clueChips,
     inspected: {}, activeClue: null, dialogue: '这本笔记少了一条结论。先看看书房里，哪些东西能帮我们弄清彩光从哪里来？',
     allInspected: false, currentHypothesis: null, observationCount: 0, progressDots: [false, false, false, false],
     introOpen: false, dialogueHidden: false,

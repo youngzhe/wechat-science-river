@@ -16,7 +16,7 @@
 .section-heading { display: flex; justify-content: space-between; align-items: baseline; margin: 24rpx 2rpx 10rpx; font-size: 24rpx; font-weight: 800; color: #344958; }
 .section-note { color: #91938d; font-size: 18rpx; font-weight: 400; }
 .snapshot-list { max-height: 31vh; min-height: 180rpx; }
-.empty-paper { display: flex; align-items: center; gap: 15rpx; padding: 24rpx; color: #78817f; font-size: 21rpx; }
+.empty-paper { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12rpx; min-height: 220rpx; padding: 24rpx; color: #78817f; font-size: 21rpx; text-align: center; }
 .empty-symbol { color: #c6965a; font-size: 35rpx; }
 .snapshot { display: flex; align-items: flex-start; gap: 13rpx; margin-bottom: 10rpx; padding: 14rpx 14rpx; background: rgba(255,253,247,.95); }
 .snapshot.selected-snapshot { box-shadow: inset 0 0 0 2rpx #79a5a1, 0 8rpx 20rpx rgba(54,103,103,.09); }

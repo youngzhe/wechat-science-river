@@ -5,7 +5,7 @@
     <mascot class="world-mascot" />
   </view>
   <button size="mini" class="sound-switch" style="top:{{headerTop - 1}}px" bindtap="toggleSound" aria-label="{{muted ? '开启声音' : '关闭声音'}}"><image class="sound-icon" src="/assets/icons/{{muted ? 'volume-mute' : 'volume-up'}}-active.png" /></button>
-  <view class="map-content" wx:if="{{activeTab === 'explore'}}">
+  <view class="map-content" style="top:{{contentTop}}px" wx:if="{{activeTab === 'explore'}}">
     <view class="region-row">
       <button size="mini" class="region-node" data-id="life" bindtap="openRegion"><text>生命的奇迹</text><text class="region-state">未开放</text></button>
     </view>

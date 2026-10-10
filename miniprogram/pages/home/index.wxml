@@ -1,7 +1,7 @@
 <view class="home-shell {{leaving ? 'departing' : ''}}">
   <image class="world-art" src="/assets/river-map.jpg" mode="aspectFill" />
   <view class="world-header" style="top:{{headerTop}}px" wx:if="{{activeTab === 'explore'}}">
-    <view class="world-brand"><text class="world-title">科学长河</text><text class="world-subtitle">发现之旅</text><text class="world-invitation">沿着问题，走进发现</text></view>
+    <view class="world-brand"><text class="world-title">小墨团的发现之旅</text><text class="world-subtitle">你的探索手记</text><text class="world-invitation">沿着问题，走进发现</text></view>
     <mascot class="world-mascot" />
   </view>
   <button size="mini" class="sound-switch" style="top:{{headerTop - 1}}px" bindtap="toggleSound" aria-label="{{muted ? '开启声音' : '关闭声音'}}"><image class="sound-icon" src="/assets/icons/{{muted ? 'volume-mute' : 'volume-up'}}-active.png" /></button>
@@ -19,7 +19,7 @@
     </view>
   </view>
   <view class="library-view" style="top:{{headerTop}}px" wx:else>
-    <view class="library-heading"><text class="library-kicker">科学长河 · 你的探索手记</text><text class="library-title">{{activeTab === 'discoveries' ? '我的发现' : activeTab === 'atlas' ? '科学图鉴' : '我的旅程'}}</text><text class="library-subtitle">{{activeTab === 'discoveries' ? '每一次观察，都让问题更清楚一点' : activeTab === 'atlas' ? '随探索点亮知识，随时翻看器材手册' : '沿着证据，留下自己的发现足迹'}}</text></view>
+    <view class="library-heading"><text class="library-kicker">小墨团的发现之旅 · 你的探索手记</text><text class="library-title">{{activeTab === 'discoveries' ? '我的发现' : activeTab === 'atlas' ? '科学图鉴' : '我的旅程'}}</text><text class="library-subtitle">{{activeTab === 'discoveries' ? '每一次观察，都让问题更清楚一点' : activeTab === 'atlas' ? '随探索点亮知识，随时翻看器材手册' : '沿着证据，留下自己的发现足迹'}}</text></view>
     <scroll-view class="library-scroll" scroll-y enhanced>
       <block wx:if="{{activeTab === 'discoveries'}}">
         <view class="empty-state" wx:if="{{!discoveries.length}}"><mascot class="empty-mascot" /><text class="empty-title">第一项发现，等你亲手记录</text><text>在实验台点“记下这次观察”，它就会留在这里。</text><button size="mini" class="primary panel-cta" bindtap="startChapter">去找光里的线索</button></view>
@@ -37,6 +37,6 @@
     </scroll-view>
   </view>
   <view class="wood-nav"><image class="wood-texture" src="/assets/wood-nav.jpg" mode="scaleToFill" /><button wx:for="{{tabs}}" wx:key="id" class="wood-tab {{activeTab === item.id ? 'selected' : ''}}" data-tab="{{item.id}}" bindtap="switchTab" aria-label="{{item.label}}"><image class="tab-icon" src="/assets/icons/{{item.icon}}{{activeTab === item.id ? '-active' : ''}}.png" mode="aspectFit" /><text>{{item.label}}</text></button></view>
-  <view class="modal-backdrop" wx:if="{{showInvitation}}" bindtap="closeInvitation" catchtouchmove="stopTap"><view class="invitation-card paper" catchtap="stopTap"><button size="mini" class="modal-close" bindtap="closeInvitation" aria-label="关闭邀请">×</button><mascot class="invitation-mascot" /><text class="library-kicker">小墨团的第一封邀请</text><text class="library-title">光里藏着什么？</text><text class="modal-copy">我是小墨团，想和你一起沿着科学长河，寻找发现留下的线索。第一站是一间书房：一束白光经过玻璃，竟留下了彩色光带。</text><text class="modal-copy">颜色从哪里来？带上你的猜想，我们一起让光回答。</text><button size="mini" class="primary panel-cta" bindtap="enterChapter">跟小墨团进书房</button></view></view>
+  <view class="modal-backdrop" wx:if="{{showInvitation}}" bindtap="closeInvitation" catchtouchmove="stopTap"><view class="invitation-card paper" catchtap="stopTap"><button size="mini" class="modal-close" bindtap="closeInvitation" aria-label="关闭邀请">×</button><mascot class="invitation-mascot" /><text class="library-kicker">小墨团的第一封邀请</text><text class="library-title">光里藏着什么？</text><text class="modal-copy">我是小墨团，想和你一起踏上发现之旅，寻找光留下的线索。第一站是一间书房：一束白光经过玻璃，竟留下了彩色光带。</text><text class="modal-copy">颜色从哪里来？带上你的猜想，我们一起让光回答。</text><button size="mini" class="primary panel-cta" bindtap="enterChapter">跟小墨团进书房</button></view></view>
   <view class="modal-backdrop" wx:if="{{selectedCard}}" bindtap="closeCard" catchtouchmove="stopTap"><view class="detail-card paper" catchtap="stopTap"><view class="detail-head"><text class="library-kicker">{{selectedCard.status}}</text><button size="mini" class="modal-close inline-close" bindtap="closeCard" aria-label="关闭详情">×</button></view><text class="library-title">{{selectedCard.title}}</text><text class="modal-copy">{{selectedCard.unlocked ? selectedCard.copy : selectedCard.lockHint}}</text><button size="mini" class="primary panel-cta" wx:if="{{selectedCard.unlocked && selectedCard.action}}" bindtap="openExperiment">{{selectedCard.action}}</button><button size="mini" class="secondary panel-cta" wx:else bindtap="closeCard">回到探索</button></view></view>
 </view>

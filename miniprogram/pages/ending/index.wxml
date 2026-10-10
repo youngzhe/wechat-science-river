@@ -1,6 +1,6 @@
 <view class="ending-shell">
   <view class="ending-hero">
-    <view class="seal">✦</view><text class="eyebrow">科学长河 · 节点已点亮</text><text class="ending-title">光的探索者</text><text class="ending-subtitle">你不是只找到答案，也留下了怎么找到答案的路。</text>
+    <view class="seal">✦</view><text class="eyebrow">小墨团的发现之旅 · 节点已点亮</text><text class="ending-title">光的探索者</text><text class="ending-subtitle">你不是只找到答案，也留下了怎么找到答案的路。</text>
     <mascot class="ending-buddy" />
   </view>
   <view class="journey-card paper">
@@ -16,5 +16,5 @@
     <view class="parent-question"><text class="question-mark">?</text><text>哪条证据最影响你的想法？如果观察结果相反，你会怎么解释？</text></view>
   </view>
   <view class="next-preview"><text class="next-kicker">长河继续向前</text><text class="next-title">望远镜边缘为什么会有彩色？</text><text class="next-status">下一章问题预告 · 尚未开放</text></view>
-  <button class="primary home-button" bindtap="backHome">回到科学长河</button>
+  <button class="primary home-button" bindtap="backHome">回到发现之旅</button>
 </view>

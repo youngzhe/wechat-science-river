@@ -11,7 +11,7 @@
   border:2rpx solid #b18a53; border-radius:12rpx;
   box-shadow:0 6rpx 22rpx rgba(34,19,6,.2);
 }
-.world-title { display:block; font-family:'Songti SC',serif; font-size:64rpx; font-weight:800; letter-spacing:3rpx; line-height:1.15; }
+.world-title { display:block; font-family:'Songti SC',serif; font-size:52rpx; font-weight:800; letter-spacing:2rpx; line-height:1.15; }
 .world-subtitle { display:block; font-family:'Songti SC',serif; font-size:33rpx; font-weight:700; margin-top:4rpx; }
 .world-invitation { display:block; font-size:21rpx; margin-top:12rpx; color:#78532f; }
 .world-mascot {

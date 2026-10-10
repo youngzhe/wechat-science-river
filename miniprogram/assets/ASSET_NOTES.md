@@ -3,6 +3,8 @@
 - `study-room.jpg`：原创生成的牛顿时期书房场景底图，输出 800×1200 JPEG 以控制小程序包体；白屏保持空白，真实彩光只由实验模型绘制。
 - `xiaomotuan-small.png`：原创生成的小墨团透明角色主姿态，640px 长边。首版通过轻微浮动动画表达待机，其他情绪由短对白与卡片图标表达。
 - `mascot/xiaomotuan-front.png`、`mascot/xiaomotuan-turned.png`：按小墨团既有立绘生成的 3D 玩偶质感透明渲染。恢复原先更俏皮的不对称轮廓，只将暖炭灰身体轻轻提亮；琥珀大眼、摸脸动作和高对比青绿色披风保持不变。两张均为 495×512 RGBA PNG，245,761 与 223,888 bytes；总计 469,649 bytes（约 459 KiB）。组件点按时短暂切换转身态，出错则回退到 `xiaomotuan-small.png`。
+- `wood-nav.jpg`：原创生成的深色木纹导航底图（780×150，无烤入图标）。首页底部导航改用此干净纹理 + `icons/` 图标分层渲染，保证图标与 tab 对齐、选中态可切换。
+- `icons/*.png`：Bootstrap Icons（MIT License，见 `icons/LICENSE.txt`）导出的罗盘/日记/图集/人像/音量图标，米金与亮金（active）两态，用于底部导航与声音开关。
 - 实验台器材、光路与光谱由程序绘制，便于根据模型状态实时变化。
 - `audio/sfx-tap.mp3`：程序合成（点击反馈，单音 880Hz + 3.2kHz 噪声脉冲，~0.18s）。
 - `audio/sfx-found.mp3`：程序合成（发现线索，C5–E5–G5–C6 上升琶音 + 钟琴音色，~0.70s）。

@@ -96,17 +96,18 @@
 .wood-texture { position:absolute; inset:0; width:100%; height:100%; }
 .wood-tab {
   position:relative; flex:1; min-width:0;
-  margin:0; padding:115rpx 0 14rpx;
+  margin:0; padding:24rpx 4rpx 14rpx;
   background:transparent; display:flex; align-items:center; flex-direction:column;
-  line-height:1.25; font-size:24rpx; color:#dfc198;
+  justify-content:flex-start; line-height:1.25; font-size:23rpx; color:#dfc198;
   border:0; border-radius:0;
 }
-.wood-tab image { width:48rpx; height:48rpx; margin-bottom:7rpx; }
+.wood-tab .tab-icon { width:46rpx; height:46rpx; margin-bottom:6rpx; }
+.wood-tab text { white-space:nowrap; }
 .wood-tab.selected {
   color:#ffe29c; text-shadow:0 0 18rpx #d99731;
   background:rgba(236,166,54,.12); box-shadow:inset 0 -4rpx #e7b858;
 }
-.wood-tab.selected image { filter:drop-shadow(0 0 7rpx #ba7620); }
+.wood-tab.selected .tab-icon { filter:drop-shadow(0 0 7rpx #ba7620); }
 
 /* 图书馆视图 */
 .library-view {

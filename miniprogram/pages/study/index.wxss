@@ -13,13 +13,15 @@
 .progress-dot { width: 12rpx; height: 12rpx; border-radius: 50%; background: rgba(255,255,255,.46); }
 .progress-dot.filled { background: #ffd47f; }
 /* 热点只属于场景区，永远不会压到面板 */
-.hotspot { position: absolute; z-index: 6; min-width: 96rpx; min-height: 96rpx; height: 96rpx; padding: 0 20rpx; line-height: 96rpx; border-radius: 50%; color: #284658; font-size: 27rpx; font-weight: 800; background: rgba(252,239,207,.92); border: 4rpx solid rgba(255,255,255,.82); box-shadow: 0 0 0 12rpx rgba(255,235,182,.2), 0 8rpx 22rpx rgba(30,31,25,.24); animation: pulse 2.2s ease-out infinite; }
-.hotspot.seen { background: #41736b; color: white; box-shadow: 0 0 0 8rpx rgba(169,226,192,.18); animation: none; }
+.hotspot { position: absolute; z-index: 6; display: flex; align-items: center; justify-content: center; width: 88rpx; min-width: 88rpx; height: 88rpx; min-height: 88rpx; padding: 0; line-height: 1; border-radius: 50%; color: #284658; font-size: 25rpx; font-weight: 800; background: transparent; border: 0; box-shadow: none; }
+.hotspot-visual { display: flex; align-items: center; justify-content: center; width: 64rpx; height: 64rpx; box-sizing: border-box; border-radius: 50%; color: #284658; font-size: 25rpx; font-weight: 800; background: rgba(252,239,207,.94); border: 3rpx solid rgba(255,255,255,.88); box-shadow: 0 5rpx 14rpx rgba(30,31,25,.22); animation: pulse 2.2s ease-out infinite; }
+.hotspot.seen .hotspot-visual { background: #41736b; color: white; box-shadow: 0 0 0 5rpx rgba(169,226,192,.18); animation: none; }
 .hotspot.guided { outline: 6rpx solid #e8bc72; outline-offset: 6rpx; }
 .window-spot { top: 17%; left: 13%; }
 .prism-spot { top: 45%; left: 32%; }
 .screen-spot { top: 40%; right: 13%; }
-.paper-spot { top: 70%; left: 21%; border-radius: 30rpx; font-size: 20rpx; }
+.paper-spot { top: 70%; left: 21%; }
+.paper-spot .hotspot-visual { width: 78rpx; border-radius: 24rpx; font-size: 20rpx; }
 /* ---- 下半：面板区（任务 + 对话 + 猜想 + 按钮，纵向排列）---- */
 .study-panel { flex-shrink: 0; display: flex; flex-direction: column; gap: 16rpx; padding: 20rpx 26rpx calc(20rpx + env(safe-area-inset-bottom)); border-radius: 32rpx 32rpx 0 0; background: rgba(250,247,239,.98); box-shadow: 0 -10rpx 30rpx rgba(30,31,25,.18); }
 .task-row { display: flex; align-items: baseline; gap: 14rpx; }
@@ -53,6 +55,7 @@
 .intro-title { display: block; margin-top: 12rpx; color: #304958; font-size: 37rpx; font-weight: 850; }
 .intro-copy { display: block; margin-top: 15rpx; padding-right: 20rpx; color: #54636a; font-size: 24rpx; line-height: 1.75; }
 .intro-button { width: 100%; height: 90rpx; margin-top: 23rpx; line-height: 90rpx; font-size: 24rpx; }
+.intro-skip { display: block; margin: 9rpx auto 0; padding: 0 20rpx; height: 66rpx; line-height: 66rpx; color: #718078; background: transparent; font-size: 20rpx; }
 .fiction-note { display: block; margin-top: 13rpx; color: #9b9589; text-align: center; font-size: 17rpx; }
 .hint-backdrop { position: fixed; z-index: 32; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40rpx; background: rgba(26,34,36,.45); }
 .hint-card { width: 100%; max-width: 540rpx; padding: 20rpx 22rpx; box-sizing: border-box; border-radius: 24rpx; background: #fbf7ed; }

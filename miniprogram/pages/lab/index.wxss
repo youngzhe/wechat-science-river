@@ -18,6 +18,11 @@
 .result-copy { display: flex; flex-direction: column; }
 .result-title { font-size: 20rpx; font-weight: 800; color: #445665; }
 .result-message { margin-top: 5rpx; font-size: 22rpx; line-height: 1.45; color: #485964; }
+.instruction-card { display: flex; align-items: flex-start; gap: 13rpx; margin-top: 12rpx; padding: 15rpx 16rpx; border-radius: 17rpx; background: #fff9eb; border: 1rpx solid rgba(176,129,69,.2); }
+.instruction-step { flex-shrink: 0; padding: 7rpx 10rpx; border-radius: 999rpx; background: #f1dfbb; color: #815d35; font-size: 18rpx; font-weight: 800; }
+.instruction-copy { display: flex; flex-direction: column; min-width: 0; }
+.instruction-title { color: #354958; font-size: 22rpx; line-height: 1.35; font-weight: 800; }
+.instruction-detail { margin-top: 4rpx; color: #707b7c; font-size: 19rpx; line-height: 1.4; }
 .light-caption { display: flex; align-items: center; justify-content: center; gap: 10rpx; padding-top: 14rpx; color: #728078; font-size: 18rpx; }
 .beam-dot { width: 14rpx; height: 14rpx; border-radius: 50%; background: #fffefa; box-shadow: 0 0 9rpx #fff; }
 .caption-arrow { color: #c58a4d; }
@@ -28,11 +33,12 @@
 .control-row { display: flex; gap: 11rpx; margin-top: 13rpx; }
 .device-button { display: flex; flex: 1; align-items: center; justify-content: center; flex-direction: column; gap: 4rpx; margin: 0; height: 91rpx; line-height: 1.1; padding: 7rpx; color: #66727a; font-size: 18rpx; background: #eee9df; border-radius: 17rpx; }
 .device-button.on { color: #2d6470; background: #d8e9e6; box-shadow: inset 0 0 0 2rpx rgba(75,134,136,.27); }
+.next-control { box-shadow: 0 0 0 3rpx rgba(206,153,79,.56), 0 5rpx 14rpx rgba(93,68,35,.12); }
 .device-glyph { font-size: 37rpx; line-height: 39rpx; color: #7da4a4; }
 .lens-glyph { font-size: 41rpx; }
 .adjust-row { display: flex; align-items: center; gap: 11rpx; margin-top: 13rpx; min-height: 58rpx; }
 .adjust-label { flex-shrink: 0; font-size: 19rpx; color: #747c7a; }
-.stepper { width: 76rpx; min-width: 76rpx; height: 88rpx; line-height: 88rpx; margin: 0; border-radius: 50%; color: #365968; background: #e1ebe7; font-size: 26rpx; }
+.stepper { width: 88rpx; min-width: 88rpx; height: 88rpx; line-height: 88rpx; margin: 0; border-radius: 50%; color: #365968; background: #e1ebe7; font-size: 26rpx; }
 .value-pill { min-width: 54rpx; text-align: center; font-size: 20rpx; color: #425766; }
 .narrow-button { margin: 0; padding: 10rpx 15rpx; border-radius: 999rpx; color: #49616a; background: #eee9df; font-size: 18rpx; }
 .narrow-button.on { color: #275e65; background: #d8e9e6; }
@@ -42,9 +48,11 @@
 .band-button { flex: 1; min-height: 88rpx; margin: 0; padding: 7rpx 0; font-size: 18rpx; color: #67727a; background: #f0ece4; border-radius: 13rpx; }
 .band-button.chosen { color: #334957; background: #e3eee9; box-shadow: inset 0 0 0 2rpx #709998; }
 .band-swatch { display: block; width: 22rpx; height: 22rpx; margin: 0 auto 4rpx; border-radius: 50%; }
-.action-row { display: flex; gap: 9rpx; margin-top: 17rpx; }
-.action-button { flex: 1; min-width: 0; margin: 0; height: 88rpx; line-height: 88rpx; padding: 0 4rpx; font-size: 18rpx; }
-.capture-button { flex: 1.25; min-width: 0; margin: 0; height: 88rpx; line-height: 88rpx; padding: 0 8rpx; font-size: 19rpx; }
+.action-row { display: flex; flex-direction: column; gap: 12rpx; margin-top: 15rpx; }
+.utility-row { display: flex; gap: 10rpx; }
+.action-button { flex: 1; min-width: 0; margin: 0; height: 82rpx; line-height: 82rpx; padding: 0 7rpx; font-size: 19rpx; }
+.capture-button { width: 100%; margin: 0; height: 92rpx; line-height: 92rpx; padding: 0 12rpx; font-size: 23rpx; }
+.capture-button.capture-ready { box-shadow: 0 8rpx 18rpx rgba(49,84,106,.25); }
 .hint-backdrop { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; padding: 40rpx; background: rgba(26,34,36,.45); }
 .hint-card { width: 100%; max-width: 540rpx; padding: 20rpx 22rpx; box-sizing: border-box; border-radius: 24rpx; background: #fbf7ed; }
 .hint-header { display: flex; align-items: center; justify-content: space-between; }
@@ -54,3 +62,58 @@
 .hint-actions { display: flex; gap: 10rpx; margin-top: 16rpx; }
 .hint-actions button { flex: 1; margin: 0; height: 72rpx; line-height: 72rpx; font-size: 21rpx; }
 @keyframes camera-in { from { opacity: .7; transform: scale(1.035) translateY(16rpx); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+/* Keep the experiment hierarchy compact: instruction → light path → controls. */
+.lab-shell { padding: 22rpx 24rpx calc(34rpx + env(safe-area-inset-bottom)); }
+.lab-header { gap: 12rpx; min-height: 78rpx; }
+.lab-heading { flex: 1; min-width: 0; }
+.eyebrow { display: block; font-size: 18rpx; line-height: 1.2; }
+.lab-title { margin-top: 4rpx; font-size: 32rpx; line-height: 1.2; white-space: nowrap; }
+.header-actions { flex-shrink: 0; gap: 8rpx; }
+.notebook-link { height: 68rpx; line-height: 68rpx; padding: 0 16rpx; font-size: 19rpx; }
+.notebook-count { flex: 0 0 132rpx; width: 132rpx; min-width: 132rpx; }
+.sound-btn { flex: 0 0 68rpx; width: 68rpx; min-width: 68rpx; font-size: 28rpx; }
+.header-actions .notebook-link { box-sizing: border-box; }
+.mode-tabs { margin-top: 16rpx; padding: 6rpx; }
+.mode-tab { padding: 12rpx 5rpx; font-size: 19rpx; }
+.instruction-card { align-items: center; gap: 12rpx; margin-top: 14rpx; padding: 13rpx 15rpx; border-radius: 18rpx; box-shadow: 0 5rpx 14rpx rgba(92,72,41,.06); }
+.instruction-step { padding: 7rpx 11rpx; font-size: 17rpx; white-space: nowrap; }
+.instruction-title { font-size: 21rpx; }
+.instruction-detail { margin-top: 3rpx; font-size: 18rpx; }
+.scene-frame { margin-top: 13rpx; padding: 14rpx; border-radius: 23rpx; }
+.scene-heading { padding: 0 3rpx 9rpx; }
+.scene-kicker { font-size: 19rpx; }
+.stage-chip { padding: 7rpx 11rpx; font-size: 17rpx; }
+.optics-canvas { height: 350rpx; border-radius: 16rpx; }
+.light-caption { padding-top: 10rpx; gap: 8rpx; font-size: 17rpx; }
+.result-card { align-items: center; gap: 10rpx; margin-top: 10rpx; padding: 11rpx 13rpx; border-radius: 14rpx; }
+.result-icon { width: 32rpx; height: 32rpx; line-height: 32rpx; font-size: 18rpx; }
+.result-copy { flex: 1; min-width: 0; }
+.result-title { font-size: 18rpx; }
+.result-message { margin-top: 2rpx; font-size: 19rpx; line-height: 1.35; }
+.bench-panel { margin-top: 13rpx; padding: 16rpx; border-radius: 21rpx; }
+.panel-title { font-size: 22rpx; }
+.panel-note { font-size: 17rpx; }
+.control-row { gap: 8rpx; margin-top: 11rpx; }
+.device-button { height: 82rpx; font-size: 17rpx; border-radius: 14rpx; }
+.device-glyph { font-size: 33rpx; line-height: 34rpx; }
+.adjust-row { gap: 8rpx; margin-top: 10rpx; min-height: 52rpx; }
+.stepper { width: 70rpx; min-width: 70rpx; height: 70rpx; line-height: 70rpx; }
+.narrow-button { padding: 9rpx 12rpx; font-size: 17rpx; }
+.band-button { min-height: 76rpx; font-size: 17rpx; }
+.action-row { gap: 9rpx; margin-top: 12rpx; }
+.utility-row { gap: 8rpx; }
+.action-button { height: 70rpx; line-height: 70rpx; font-size: 17rpx; }
+.capture-button { height: 82rpx; line-height: 82rpx; font-size: 21rpx; }
+/* The controls show only the apparatus used by the current experiment. */
+.header-actions { width:208rpx; }
+.device-button { min-width:0; flex-direction:row; gap:12rpx; height:88rpx; font-size:22rpx; }
+.adjust-label { font-size:22rpx; }
+.instruction-title { font-size:24rpx; }
+.instruction-detail,.result-message { font-size:22rpx; line-height:1.5; }
+.scene-kicker { font-size:20rpx; }
+.panel-title { font-size:24rpx; }
+.band-button { min-height:84rpx; font-size:22rpx; }
+.mode-tab { min-height:74rpx; font-size:23rpx; }
+.action-button { font-size:21rpx; }
+.capture-button { font-size:25rpx; }

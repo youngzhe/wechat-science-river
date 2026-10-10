@@ -1,6 +1,12 @@
 // 全局声音管理：背景音乐（循环）+ 短音效池，静音状态持久化
 const MUTE_KEY = 'sr_muted';
 const app = () => getApp();
+const SFX_FILES = {
+  tap: 'ui-click.mp3',
+  found: 'glitter-chime.mp3',
+  hint: 'glitter-chime.mp3',
+  success: 'glitter-chime.mp3',
+};
 
 let bgm = null;
 const sfxPool = {};
@@ -10,9 +16,9 @@ function muted() { return app() && app().globalData && app().globalData.muted; }
 function ensureBgm() {
   if (bgm) return bgm;
   bgm = wx.createInnerAudioContext({ useWebAudioImplement: false });
-  bgm.src = '/assets/audio/bgm.wav';
+  bgm.src = '/assets/audio/ambient-bg.mp3';
   bgm.loop = true;
-  bgm.volume = 0.4;
+  bgm.volume = 0.22;
   bgm.onError(() => {});
   return bgm;
 }
@@ -52,7 +58,7 @@ module.exports = {
     let ctx = sfxPool[name];
     if (!ctx) {
       ctx = wx.createInnerAudioContext({ useWebAudioImplement: true });
-      ctx.src = `/assets/audio/sfx-${name}.wav`;
+      ctx.src = `/assets/audio/${SFX_FILES[name] || SFX_FILES.tap}`;
       ctx.volume = 0.65;
       ctx.onError(() => {});
       sfxPool[name] = ctx;

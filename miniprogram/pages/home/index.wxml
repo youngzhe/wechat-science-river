@@ -1,22 +1,36 @@
-<view class="home-shell">
-  <image class="home-bg" src="/assets/study-room.jpg" mode="aspectFill" />
-  <view class="home-shade"></view>
-  <view class="map-mark paper"><text class="eyebrow">SCIENCE RIVER · 01</text><text class="map-caption">沿着问题，走进发现</text></view>
-  <view class="home-copy">
-    <text class="eyebrow">科学长河 · 发现之旅</text>
-    <text class="hero-title">白光里的
-      <text class="hero-title-accent">秘密</text>
-    </text>
-    <text class="hero-subtitle">一束光，两种解释。哪条证据会改变你的想法？</text>
-    <view class="chapter-chip"><text class="chip-dot"></text><text>牛顿光学篇 · 约 10—15 分钟</text></view>
+<view class="home-shell {{leaving ? 'departing' : ''}}">
+  <image class="world-art" src="/assets/river-map.jpg" mode="aspectFill" />
+  <view class="world-header" style="top:{{headerTop}}px" wx:if="{{activeTab === 'explore'}}">
+    <view class="world-brand"><text class="world-title">科学长河</text><text class="world-subtitle">发现之旅</text><text class="world-invitation">沿着问题，走进发现</text></view>
+    <mascot class="world-mascot" />
   </view>
-  <mascot class="home-mascot" />
-  <view class="home-footer">
-    <view class="footer-top-row">
-      <view class="locked-node"><text class="node-ring">Ⅱ</text><view><text class="node-title">望远镜边缘的彩色谜题</text><text class="node-caption">后续章节 · 尚未开放</text></view></view>
-      <button class="sound-toggle" bindtap="toggleSound" aria-label="切换声音">{{muted ? '🔇' : '🔈'}}</button>
-    </view>
-    <button class="primary start-button" bindtap="startChapter">{{continueLabel}}</button>
-    <text class="footer-note">进度保存在这台设备上</text>
+  <button class="sound-switch" style="top:{{headerTop - 1}}px" bindtap="toggleSound" aria-label="{{muted ? '开启声音' : '关闭声音'}}"><image src="/assets/icons/{{muted ? 'volume-mute' : 'volume-up'}}-active.png" /></button>
+  <view class="map-content" wx:if="{{activeTab === 'explore'}}">
+    <button class="region-node region-life" data-id="life" bindtap="openRegion"><text>生命的奇迹</text><text class="region-state">未开放</text></button>
+    <button class="active-node" bindtap="startChapter"><text class="node-overline">第一站 · 牛顿光学</text><text class="node-title">白光里的秘密</text><text class="node-status">{{chapterStatus}}</text></button>
+    <view class="chapter-progress"><text>{{currentGoal}}</text><view class="progress-track"><view style="width:{{progress}}%"></view></view><button class="start-button" bindtap="startChapter">{{continueLabel}} <text>›</text></button></view>
+    <button class="region-node region-space" data-id="space" bindtap="openRegion"><text>星空的密码</text><text class="region-state">未开放</text></button>
+    <button class="region-node region-invention" data-id="invention" bindtap="openRegion"><text>改变世界的发明</text><text class="region-state">未开放</text></button>
   </view>
+  <view class="library-view" style="top:{{headerTop}}px" wx:else>
+    <view class="library-heading"><text class="library-kicker">科学长河 · 你的探索手记</text><text class="library-title">{{activeTab === 'discoveries' ? '我的发现' : activeTab === 'atlas' ? '科学图鉴' : '我的旅程'}}</text><text class="library-subtitle">{{activeTab === 'discoveries' ? '每一次观察，都让问题更清楚一点' : activeTab === 'atlas' ? '随探索点亮知识，随时翻看器材手册' : '沿着证据，留下自己的发现足迹'}}</text></view>
+    <scroll-view class="library-scroll" scroll-y enhanced>
+      <block wx:if="{{activeTab === 'discoveries'}}">
+        <view class="empty-state" wx:if="{{!discoveries.length}}"><mascot class="empty-mascot" /><text class="empty-title">第一项发现，等你亲手记录</text><text>在实验台点“记下这次观察”，它就会留在这里。</text><button class="primary panel-cta" bindtap="startChapter">去找光里的线索</button></view>
+        <button wx:for="{{discoveries}}" wx:key="id" class="discovery-row" data-id="{{item.id}}" bindtap="openDiscovery"><view class="discovery-heading"><text>{{item.title}}</text><text class="row-meta">{{item.modeLabel}} · 第 {{item.order}} 次观察</text></view><text class="discovery-copy">{{item.caption}}</text><text class="row-link">翻看观察与关联证据 ›</text></button>
+      </block>
+      <block wx:if="{{activeTab === 'atlas'}}">
+        <button wx:for="{{atlas}}" wx:key="id" class="atlas-row {{item.unlocked ? '' : 'atlas-locked'}}" data-id="{{item.id}}" bindtap="openAtlas"><view><text class="row-title">{{item.title}}</text><text class="row-meta">{{item.subtitle}}</text></view><text class="atlas-status">{{item.status}} ›</text></button>
+        <text class="footnote">本章使用简化的教学光学模型，帮助比较观察与解释。</text>
+      </block>
+      <block wx:if="{{activeTab === 'journey'}}">
+        <view class="journey-summary"><text class="row-title">白光里的秘密</text><text class="row-meta">{{completedSteps}} / {{steps.length}} 个旅程节点已完成</text><view class="progress-track"><view style="width:{{progress}}%"></view></view></view>
+        <view wx:for="{{steps}}" wx:key="title" class="journey-step {{item.done ? 'step-done' : ''}} {{item.current ? 'step-current' : ''}}"><text class="step-number">{{item.done ? '✓' : item.number}}</text><view><text class="row-title">{{item.title}}</text><text class="row-meta">{{item.detail}}</text></view><text class="step-state">{{item.done ? '已完成' : item.current ? '当前目标' : '待探索'}}</text></view>
+        <button class="primary panel-cta" bindtap="startChapter">{{continueLabel}}</button><text class="footnote">单机探索 · 进度仅保存在当前设备</text>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="wood-nav"><image class="wood-texture" src="/assets/wood-nav.jpg" mode="scaleToFill" /><button wx:for="{{tabs}}" wx:key="id" class="wood-tab {{activeTab === item.id ? 'selected' : ''}}" data-tab="{{item.id}}" bindtap="switchTab" aria-label="{{item.label}}"><image src="/assets/icons/{{item.icon}}{{activeTab === item.id ? '-active' : ''}}.png" /><text>{{item.label}}</text></button></view>
+  <view class="modal-backdrop" wx:if="{{showInvitation}}" bindtap="closeInvitation" catchtouchmove="stopTap"><view class="invitation-card paper" catchtap="stopTap"><button class="modal-close" bindtap="closeInvitation" aria-label="关闭邀请">×</button><mascot class="invitation-mascot" /><text class="library-kicker">小墨团的第一封邀请</text><text class="library-title">光里藏着什么？</text><text class="modal-copy">我是小墨团，想和你一起沿着科学长河，寻找发现留下的线索。第一站是一间书房：一束白光经过玻璃，竟留下了彩色光带。</text><text class="modal-copy">颜色从哪里来？带上你的猜想，我们一起让光回答。</text><button class="primary panel-cta" bindtap="enterChapter">跟小墨团进书房</button></view></view>
+  <view class="modal-backdrop" wx:if="{{selectedCard}}" bindtap="closeCard" catchtouchmove="stopTap"><view class="detail-card paper" catchtap="stopTap"><view class="detail-head"><text class="library-kicker">{{selectedCard.status}}</text><button class="modal-close inline-close" bindtap="closeCard" aria-label="关闭详情">×</button></view><text class="library-title">{{selectedCard.title}}</text><text class="modal-copy">{{selectedCard.unlocked ? selectedCard.copy : selectedCard.lockHint}}</text><button class="primary panel-cta" wx:if="{{selectedCard.unlocked && selectedCard.action}}" bindtap="openExperiment">{{selectedCard.action}}</button><button class="secondary panel-cta" wx:else bindtap="closeCard">回到探索</button></view></view>
 </view>

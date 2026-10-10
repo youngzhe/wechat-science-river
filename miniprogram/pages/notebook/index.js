@@ -11,7 +11,8 @@ const modes = { dispersion: '展开光谱', selective_refraction: '选色实验'
 const bands = { red: '红', orange: '橙', yellow: '黄', green: '绿', blue: '蓝', violet: '紫' };
 Page({
   data: { hypotheses, observations: [], selectedId: null, selectedObservation: null, initialText: '还没有猜想', currentText: '还没有猜想', currentHypothesis: null, hasE4: false, hasTransferObservation: false, transferPrediction: null, canConclude: false },
-  onShow() { this.refresh(); },
+  onLoad(options) { if (options.observation) this.setData({ selectedId: options.observation }); },
+  onShow() { const save = loadSave(wx); save.lastPage = 'pages/notebook/index'; writeSave(wx, save); this.refresh(); },
   refresh() {
     const save = loadSave(wx);
     const selectedObservation = save.observations.find((item) => item.id === this.data.selectedId) || save.observations[save.observations.length - 1] || null;

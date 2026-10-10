@@ -12,6 +12,7 @@ Page({
   },
   onShow() {
     const save = loadSave(wx);
+    save.lastPage = 'pages/study/index'; writeSave(wx, save);
     const inspected = {};
     save.inspectedObjects.forEach((id) => { inspected[id] = true; });
     this.setData({ inspected, allInspected: Object.keys(objects).every((id) => inspected[id]), currentHypothesis: save.currentHypothesis, observationCount: save.observations.length, progressDots: Object.keys(objects).map((id) => !!inspected[id]), introOpen: save.stage === 'intro' && !save.inspectedObjects.length, muted: sound.isMuted() });

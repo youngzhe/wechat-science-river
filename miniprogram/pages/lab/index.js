@@ -4,6 +4,7 @@ const { captureObservation, linkEvidence } = require('../../core/notebook');
 const { dispatchChapterEvent } = require('../../core/chapter');
 const { hints } = require('../../content/chapter1');
 const sound = require('../../core/sound');
+const { paintOpticsScene } = require('../../core/optics-scene');
 const modes = [
   { id: 'dispersion', label: '展开光谱' },
   { id: 'selective_refraction', label: '单色再试' },
@@ -15,10 +16,28 @@ const bandOptions = [
   { id: 'blue', label: '蓝', color: '#5d89b6' }, { id: 'violet', label: '紫', color: '#8879a8' },
 ];
 function copy(value) { return JSON.parse(JSON.stringify(value)); }
+function getInstruction(apparatus, result) {
+  if (apparatus.mode === 'dispersion') {
+    if (!apparatus.prism1InPath) return { step: '第 1 步', title: '把第一块棱镜放进光路', detail: '观察白光经过棱镜后，白屏上留下了什么。', target: 'prism1' };
+    if (apparatus.prism1Angle < 18 || apparatus.prism1Angle > 48) return { step: '第 1 步', title: '把棱镜角度调回有效范围', detail: '用角度两侧的按钮微调，再观察白屏。', target: 'angle' };
+    if (!result.lightOnScreen) return { step: '第 2 步', title: '移动白屏接住光束', detail: '拖动画面中的白屏，或使用下方滑杆。', target: 'screen' };
+    return { step: '观察结果', title: '白屏上出现了什么？', detail: '先描述你看到的色带，再点“记下这次观察”。', target: 'capture' };
+  }
+  if (apparatus.mode === 'selective_refraction') {
+    if (!apparatus.prism1InPath) return { step: '第 1 步', title: '先把第一块棱镜放进光路', detail: '形成光谱后，再从中选一种颜色。', target: 'prism1' };
+    if (!apparatus.selectedBand || apparatus.slitWidth > 0.25) return { step: '第 2 步', title: '选一种颜色作为窄色带', detail: '点选下方任意色带；选中后会自动调窄。', target: 'band' };
+    if (!apparatus.prism2InPath) return { step: '第 3 步', title: '让窄色带经过第二块棱镜', detail: '留意颜色和前进方向分别发生了什么变化。', target: 'prism2' };
+    return { step: '观察结果', title: '颜色变了，还是方向变了？', detail: '比较光带前后的颜色与方向，然后记下观察。', target: 'capture' };
+  }
+  if (!apparatus.prism1InPath) return { step: '第 1 步', title: '先让第一块棱镜展开白光', detail: '完整光谱出现后，再尝试让不同颜色重新会聚。', target: 'prism1' };
+  if (!apparatus.lensInPath) return { step: '第 2 步', title: '把透镜放到完整光谱的光路上', detail: '观察透镜能否让分开的颜色重新聚在一起。', target: 'lens' };
+  if (apparatus.screenPosition < 0.5 || apparatus.screenPosition > 0.72) return { step: '第 3 步', title: '移动白屏寻找会聚位置', detail: '拖动画面中的白屏，或使用下方滑杆。', target: 'screen' };
+  return { step: '观察结果', title: '光斑接近白色了吗？', detail: '记录完整光谱会聚后的观察，再比较挡住一段色带时的变化。', target: 'capture' };
+}
 
 Page({
   data: {
-    modes, bandOptions, apparatus: {}, result: {}, observationCount: 0, modeHint: '', stageLabel: '可随时撤回和重试',
+    modes, bandOptions, apparatus: {}, result: {}, observationCount: 0, modeHint: '', stageLabel: '可随时撤回和重试', instruction: {},
     showHint: false, hintLevel: 1, hintText: '', blocked: false, slitNarrow: false, muted: false,
   },
   onLoad() {
@@ -29,15 +48,16 @@ Page({
     this._lastDrawAt = 0;
     this.refresh();
   },
-  onShow() { this._canvas = null; this.refresh(); this.setData({ muted: sound.isMuted() }); setTimeout(() => this.drawScene(), 60); },
+  onShow() { const save = loadSave(wx); save.lastPage = 'pages/lab/index'; writeSave(wx, save); this._canvas = null; this.refresh(); this.setData({ muted: sound.isMuted() }); setTimeout(() => this.drawScene(), 60); },
   onUnload() { this._canvas = null; if (this._drawTimer) { clearTimeout(this._drawTimer); this._drawTimer = null; } },
   refresh() {
     const save = loadSave(wx);
     const apparatus = save.apparatus;
     const result = simulateOptics(apparatus);
     const modeHint = apparatus.mode === 'dispersion' ? '第一轮 · 让白光穿过棱镜' : apparatus.mode === 'selective_refraction' ? '第二轮 · 选一种窄色带再试' : '补充观察 · 让完整光谱重新会聚';
-    const stageLabel = result.evidenceKind ? `已观察到 ${result.evidenceKind}` : '试一试不同摆法';
-    this.setData({ apparatus, result, observationCount: save.observations.length, modeHint, stageLabel, blocked: apparatus.blockedBands.length > 0, slitNarrow: apparatus.slitWidth < 0.3 });
+    const recorded = result.evidenceKind && save.observations.some(o => o.evidenceKind === result.evidenceKind);
+    const stageLabel = result.evidenceKind ? (recorded ? `已记录 ${result.evidenceKind}` : `可记录 ${result.evidenceKind}`) : '试一试不同摆法';
+    this.setData({ apparatus, result, observationCount: save.observations.length, modeHint, stageLabel, instruction: getInstruction(apparatus, result), blocked: apparatus.blockedBands.length > 0, slitNarrow: apparatus.slitWidth < 0.3 });
   },
   persist(apparatus) {
     let save = loadSave(wx);
@@ -53,7 +73,7 @@ Page({
     const mode = e.currentTarget.dataset.mode;
     this.hintBlocker = mode === 'selective_refraction' ? 'select_band' : mode === 'recombination' ? 'recombination' : 'first_spectrum';
     sound.play('tap');
-    this.patchApp({ mode });
+    this.patchApp({ mode, prism2InPath: mode === 'selective_refraction' && this.data.apparatus.prism2InPath, lensInPath: mode === 'recombination' && this.data.apparatus.lensInPath, blockedBands: [], slitWidth: mode === 'selective_refraction' ? this.data.apparatus.slitWidth : 1 });
   },
   togglePrism1() { sound.play('tap'); this.patchApp({ prism1InPath: !this.data.apparatus.prism1InPath }); },
   togglePrism2() { sound.play('tap'); this.patchApp({ prism2InPath: !this.data.apparatus.prism2InPath }); },
@@ -71,7 +91,8 @@ Page({
   moveScreen(e) { this.patchApp({ screenPosition: Number(e.detail.value) }); },
   previewScreen(e) {
     const apparatus = { ...this.data.apparatus, screenPosition: Number(e.detail.value) };
-    this.setData({ apparatus, result: simulateOptics(apparatus), slitNarrow: apparatus.slitWidth < 0.3 });
+    const result = simulateOptics(apparatus);
+    this.setData({ apparatus, result, instruction: getInstruction(apparatus, result), slitNarrow: apparatus.slitWidth < 0.3 });
     this.scheduleDraw();
   },
   scheduleDraw() {
@@ -102,7 +123,8 @@ Page({
     let next = this._drag.start + ((x - this._drag.startX) / width) * 0.9;
     next = Math.min(0.95, Math.max(0.1, Math.round(next * 20) / 20));
     const apparatus = { ...this.data.apparatus, screenPosition: next };
-    this.setData({ apparatus, result: simulateOptics(apparatus) });
+    const result = simulateOptics(apparatus);
+    this.setData({ apparatus, result, instruction: getInstruction(apparatus, result) });
     this.scheduleDraw();
   },
   screenTouchEnd() {
@@ -119,7 +141,7 @@ Page({
     if (result.evidenceKind === 'E4' && !save.completedMilestones.includes('E4')) save.completedMilestones.push('E4');
     writeSave(wx, save);
     sound.play(result.evidenceKind ? 'success' : 'tap');
-    this.setData({ observationCount: save.observations.length, result, stageLabel: result.evidenceKind ? `已记录 ${result.evidenceKind}` : '已记录一次尝试' });
+    this.setData({ observationCount: save.observations.length, result, stageLabel: result.evidenceKind ? `已记录 ${result.evidenceKind}` : '已记录一次尝试', instruction: { step: '继续观察', title: '这条记录保存在笔记里', detail: '试试调整一种器材，看看观察结果会不会改变。', target: '' } });
     this.drawScene();
     wx.showToast({ title: result.evidenceKind ? `记下 ${result.evidenceKind}` : '尝试已记入笔记', icon: 'success' });
   },
@@ -215,57 +237,5 @@ Page({
       this.paintScene(ctx, width, height);
     });
   },
-  paintScene(ctx, w, h) {
-      const a = this.data.apparatus; const result = this.data.result;
-      ctx.fillStyle = '#f1e9d8'; ctx.fillRect(0, 0, w, h);
-      const glow = ctx.createRadialGradient(w * .42, h * .48, 3, w * .45, h * .5, w * .62);
-      glow.addColorStop(0, '#fffdf5'); glow.addColorStop(1, '#e8dfcb'); ctx.fillStyle = glow; ctx.fillRect(0, 0, w, h);
-      const cy = h * .52; const prismX = w * .38; const screenX = w * (.18 + a.screenPosition * .82);
-      ctx.lineCap = 'round';
-      ctx.strokeStyle = '#fffdf5'; ctx.lineWidth = 6; ctx.shadowColor = '#fff'; ctx.shadowBlur = 12;
-      ctx.beginPath(); ctx.moveTo(w * .06, cy); ctx.lineTo(prismX, cy); ctx.stroke(); ctx.shadowBlur = 0;
-      if (a.prism1InPath) {
-        ctx.save(); ctx.translate(prismX, cy); ctx.rotate((a.prism1Angle - 30) * Math.PI / 180);
-        ctx.beginPath(); ctx.moveTo(-16, 24); ctx.lineTo(0, -26); ctx.lineTo(18, 24); ctx.closePath();
-        ctx.fillStyle = 'rgba(135,197,202,.36)'; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#527f88'; ctx.stroke(); ctx.restore();
-        if (result.lightOnScreen && a.mode === 'selective_refraction' && a.selectedBand && a.slitWidth < .3) {
-          const col = bandOptions.find((b) => b.id === a.selectedBand).color;
-          ctx.strokeStyle = col; ctx.lineWidth = 5; ctx.shadowColor = col; ctx.shadowBlur = 10;
-          ctx.beginPath(); ctx.moveTo(prismX + 18, cy); ctx.lineTo(screenX - (a.prism2InPath ? w * .2 : 0), cy - 12 + result.pathOffset); ctx.stroke(); ctx.shadowBlur = 0;
-          if (a.prism2InPath) {
-            const x = screenX - w * .2;
-            ctx.beginPath(); ctx.moveTo(x, cy - 26); ctx.lineTo(x - 12, cy + 8); ctx.lineTo(x + 12, cy + 8); ctx.closePath(); ctx.fillStyle = 'rgba(135,197,202,.45)'; ctx.fill(); ctx.strokeStyle = '#527f88'; ctx.lineWidth = 1.5; ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(x + 12, cy - 2 + result.pathOffset); ctx.lineTo(screenX, cy - 30 + result.pathOffset); ctx.stroke();
-          }
-        } else if (result.lightOnScreen) {
-          const colors = ['#d95f50','#e99047','#e4c65a','#6aa779','#5d89b6','#8879a8'];
-          const drawColors = result.bands.map((band) => ({ band, color: bandOptions.find((b) => b.id === band).color }));
-          if (a.mode === 'recombination' && a.lensInPath) {
-            const xLens = w * .58;
-            colors.forEach((col, i) => { const y = cy - 45 + i * 18; if (a.blockedBands.includes(bandOptions[i].id)) return; ctx.strokeStyle = col; ctx.lineWidth = 2.6; ctx.beginPath(); ctx.moveTo(prismX + 18, y); ctx.lineTo(xLens, y); ctx.lineTo(screenX, cy); ctx.stroke(); });
-            ctx.beginPath(); ctx.ellipse(xLens, cy, 5, 26, 0, 0, Math.PI * 2); ctx.fillStyle = 'rgba(137,194,200,.55)'; ctx.fill(); ctx.strokeStyle = '#557c84'; ctx.stroke();
-          } else if (a.mode === 'dispersion' || !a.selectedBand || a.slitWidth > .25) {
-            const spectrum = ctx.createLinearGradient(0, cy - 50, 0, cy + 50);
-            [[0,'#d95f50'],[.18,'#e99047'],[.36,'#e4c65a'],[.54,'#6aa779'],[.72,'#5d89b6'],[1,'#8879a8']].forEach(([stop,color]) => spectrum.addColorStop(stop,color));
-            ctx.beginPath(); ctx.moveTo(prismX + 18, cy - 3); ctx.lineTo(screenX, cy - 52 + result.pathOffset); ctx.lineTo(screenX, cy + 52 + result.pathOffset); ctx.closePath();
-            ctx.fillStyle = spectrum; ctx.globalAlpha = .78; ctx.shadowColor = '#f8dba6'; ctx.shadowBlur = 8; ctx.fill(); ctx.globalAlpha = 1; ctx.shadowBlur = 0;
-          } else {
-            drawColors.forEach(({ band, color }) => { const i = bandOptions.findIndex((b) => b.id === band); const y = cy - 48 + i * 19 + result.pathOffset; if (a.blockedBands.includes(band)) return; ctx.strokeStyle = color; ctx.lineWidth = 3.6; ctx.beginPath(); ctx.moveTo(prismX + 18, cy); ctx.lineTo(screenX, y); ctx.stroke(); });
-          }
-        }
-      }
-      if (a.mode === 'recombination' && a.lensInPath && !a.prism1InPath && result.lightOnScreen) {
-        const xLens = w * .58; ctx.beginPath(); ctx.ellipse(xLens, cy, 5, 26, 0, 0, Math.PI * 2); ctx.fillStyle = 'rgba(137,194,200,.55)'; ctx.fill();
-      }
-      ctx.fillStyle = '#fffdf7'; ctx.fillRect(screenX, cy - 62, 12, 124); ctx.strokeStyle = '#7f725c'; ctx.lineWidth = 2; ctx.strokeRect(screenX, cy - 62, 12, 124);
-      if (result.resultKind === 'spectrum') {
-        const screenSpectrum = ctx.createLinearGradient(0, cy - 50, 0, cy + 50);
-        [[0,'#d95f50'],[.18,'#e99047'],[.36,'#e4c65a'],[.54,'#6aa779'],[.72,'#5d89b6'],[1,'#8879a8']].forEach(([stop,color]) => screenSpectrum.addColorStop(stop,color));
-        ctx.fillStyle = screenSpectrum; ctx.globalAlpha = .76; ctx.fillRect(screenX + 2, cy - 50, 8, 100); ctx.globalAlpha = 1;
-      } else if (result.resultKind === 'partial_overlap') {
-        result.bands.forEach((band) => { const i = bandOptions.findIndex((b) => b.id === band); ctx.fillStyle = bandOptions[i].color; ctx.globalAlpha = .62; ctx.fillRect(screenX + 2, cy - 48 + i * 18, 8, 15); }); ctx.globalAlpha = 1;
-      }
-      if (result.resultKind === 'near_white_overlap') { ctx.fillStyle = '#fff8dc'; ctx.shadowColor = '#fff6cf'; ctx.shadowBlur = 20; ctx.beginPath(); ctx.ellipse(screenX + 7, cy, 13, 12, 0, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0; }
-      if (a.mode === 'selective_refraction' && !a.prism2InPath && a.selectedBand && result.lightOnScreen) { const x = screenX - w * .2; ctx.fillStyle = '#4a6266'; ctx.fillRect(x - 2, cy - 30, 4, 60); }
-  },
+  paintScene(ctx, w, h) { paintOpticsScene(ctx, w, h, this.data.apparatus); },
 });

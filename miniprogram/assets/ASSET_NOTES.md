@@ -4,4 +4,7 @@
 - `xiaomotuan-small.png`：原创生成的小墨团透明角色主姿态，640px 长边。首版通过轻微浮动动画表达待机，其他情绪由短对白与卡片图标表达。
 - `mascot/xiaomotuan-front.png`、`mascot/xiaomotuan-turned.png`：按小墨团既有立绘生成的 3D 玩偶质感透明渲染。恢复原先更俏皮的不对称轮廓，只将暖炭灰身体轻轻提亮；琥珀大眼、摸脸动作和高对比青绿色披风保持不变。两张均为 495×512 RGBA PNG，245,761 与 223,888 bytes；总计 469,649 bytes（约 459 KiB）。组件点按时短暂切换转身态，出错则回退到 `xiaomotuan-small.png`。
 - 实验台器材、光路与光谱由程序绘制，便于根据模型状态实时变化。
+- `audio/ui-click.mp3`：Pixabay 音效“Soft UI Click”，作者 Universfield，https://pixabay.com/sound-effects/film-special-effects-soft-ui-click-147352/ ，按 Pixabay Content License 使用。用于轻量点击反馈。
+- `audio/glitter-chime.mp3`：Pixabay 音效“Glitter Chime”，作者 humordome，https://pixabay.com/sound-effects/glitter-chime-451420/ ，按 Pixabay Content License 使用。用于发现、提示和记录成功反馈。
+- `audio/ambient-bg.mp3`：Pixabay 配乐“Gentle Documentary Ambient”，作者 JorisVermeer，https://pixabay.com/music/ambient-gentle-documentary-ambient-495383/ ，按 Pixabay Content License 使用。原始 1:33 MP3 转为 32 kHz 单声道 48 kbps 版本，以控制小程序包体；应用中以较低音量循环播放。
 - 本项目不包含正式品牌商标、史实人物肖像或已完成的商业美术套件；生成素材属于原型视觉，可继续交由插画师统一精修。
